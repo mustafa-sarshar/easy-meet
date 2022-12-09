@@ -119,10 +119,10 @@ module.exports.getCalendarEvents = async (event) => {
     redirect_uris[0]
   );
   // Decode authorization code extracted from the URL query
-  const accessToken = decodeURIComponent(
+  const access_token = decodeURIComponent(
     `${event.pathParameters.access_token}`
   );
-  oAuth2Client.setCredentials({ accessToken });
+  oAuth2Client.setCredentials({ access_token });
 
   return new Promise((resolve, reject) => {
     calendar.events.list(
