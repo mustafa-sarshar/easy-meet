@@ -51,6 +51,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0"
+    "gh-pages": "^4.0.0",
+    "serverless": "^3.25.1"
   }
 }
