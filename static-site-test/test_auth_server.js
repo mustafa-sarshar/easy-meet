@@ -1,6 +1,6 @@
 "use_strict";
 
-(function (param) {
+(function (params) {
   // Define all HTML elements and variables and constants
   const btnGetAuthURLEl = document.getElementById("btnGetAuthURL");
   const txtResultEl = document.getElementById("txtResult");
