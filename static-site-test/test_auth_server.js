@@ -6,18 +6,18 @@
   const txtResultEl = document.getElementById("txtResult");
   const lnkAuthURLEl = document.getElementById("lnkAuthURL");
   const getAuthURL =
-    "https://48o547h84b.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url"; // "LAMBDA_GET_AUTH_URL_ENDPOINT";
+    "https://mrw543502h.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url"; // "LAMBDA_GET_AUTH_URL_ENDPOINT";
 
   const txtCodeInputEl = document.getElementById("txtCode");
   const btnGetTokenEl = document.getElementById("btnGetToken");
   const txtAccessTokenEl = document.getElementById("txtAccessToken");
-  const getTokenURL =
-    "https://48o547h84b.execute-api.us-east-1.amazonaws.com/dev/api/token"; // "LAMBDA_GET_TOKEN_ENDPOINT";
+  const getAccessTokenURL =
+    "https://mrw543502h.execute-api.us-east-1.amazonaws.com/dev/api/token"; // "LAMBDA_GET_TOKEN_ENDPOINT";
 
   const btnGetEventsEl = document.getElementById("btnGetEvents");
   const txtEventsEl = document.getElementById("txtEvents");
   const getCalendarEventsURL =
-    "https://48o547h84b.execute-api.us-east-1.amazonaws.com/dev/api/get-events"; // "LAMBDA_GET_CALENDAR_EVENTS_ENDPOINT";
+    "https://mrw543502h.execute-api.us-east-1.amazonaws.com/dev/api/get-events"; // "LAMBDA_GET_CALENDAR_EVENTS_ENDPOINT";
 
   btnGetAuthURLEl.addEventListener("click", (evt) => {
     fetch(getAuthURL)
@@ -40,7 +40,7 @@
     if (decodeURIComponent(code) === code) {
       code = encodeURIComponent(txtCodeInputEl.value);
     }
-    const getTokenRequestURL = getTokenURL + "/" + code;
+    const getTokenRequestURL = getAccessTokenURL + "/" + code;
 
     fetch(getTokenRequestURL)
       .then((response) => {
