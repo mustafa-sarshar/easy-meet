@@ -15,14 +15,6 @@ class CitySearch extends Component {
     const suggestions = this.props.locations.filter(
       (location) => location.toUpperCase().indexOf(value.toUpperCase()) > -1
     );
-    // let suggestions;
-    // if (this.props.locations) {
-    //   suggestions = this.props.locations.filter(
-    //     (location) => location.toUpperCase().indexOf(value.toUpperCase()) > -1
-    //   );
-    // } else {
-    //   suggestions = [value];
-    // }
 
     this.setState({
       query: value,
