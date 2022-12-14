@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import { extractLocations, getEventsFromServer } from "./apis";
 
 import "./assets/css/nprogress.css";
@@ -15,11 +16,13 @@ class App extends Component {
     this.state = {
       events: [],
       locations: [],
+      nEvents: 32,
     };
   }
 
   componentDidMount() {
     this.mounted = true;
+
     getEventsFromServer().then((events) => {
       if (this.mounted) {
         this.setState({ events, locations: extractLocations(events) });
@@ -32,31 +35,44 @@ class App extends Component {
   }
 
   render() {
-    const { events, locations } = this.state;
+    const { events, locations, nEvents } = this.state;
 
     return (
-      <div className="App">
-        <CitySearch
-          locations={locations}
-          onUpdateEvents={this.updateEventsHandler}
-        />
-        <NumberOfEvents />
-        <EventList events={events} />
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <div className="App">
+              <CitySearch
+                locations={locations}
+                onUpdateEvents={this.updateEventsHandler}
+              />
+              <NumberOfEvents onNumOfEventsChange={this.updateEventsHandler} />
+              <EventList events={events.slice(0, nEvents)} />
+            </div>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 
-  updateEventsHandler = (location) => {
-    getEventsFromServer().then((events) => {
-      const locationEvents =
-        location === "all"
-          ? events
-          : events.filter((event) => event.location === location.trim());
+  updateEventsHandler = async (location, nEvents) => {
+    if (location) {
+      await getEventsFromServer().then((events) => {
+        const locationEvents =
+          location === "all"
+            ? events
+            : events.filter((event) => event.location === location.trim());
 
-      this.setState({
-        events: locationEvents,
+        this.setState({
+          events: locationEvents,
+        });
       });
-    });
+    }
+    if (nEvents) {
+      this.setState({
+        nEvents: nEvents,
+      });
+    }
   };
 }
 

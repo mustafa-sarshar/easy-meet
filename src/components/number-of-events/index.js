@@ -9,27 +9,32 @@ class NumberOfEvents extends Component {
     this.state = { nEvents: 32 };
   }
 
-  changeNumOfEvents = (value) => {
-    this.setState({ nEvents: value });
-  };
-
   render() {
     const { nEvents } = this.state;
 
     return (
-      <label>
-        Number of Events
+      <>
+        <label>Number of Events</label>
         <input
           className={styles["event-numbers"]}
           type="number"
           value={nEvents}
+          min={1}
+          max={32}
+          step={1}
           onChange={(event) => {
-            this.changeNumOfEvents(event.target.value);
+            this.changeNumOfEvents(Number(event.target.value));
           }}
         ></input>
-      </label>
+      </>
     );
   }
+  changeNumOfEvents = async (value) => {
+    if (value > 0 && value < 32) {
+      this.setState({ nEvents: value });
+      await this.props.onNumOfEventsChange(undefined, value);
+    }
+  };
 }
 
 export default NumberOfEvents;
