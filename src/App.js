@@ -1,26 +1,63 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { extractLocations, getEventsFromServer } from "./apis";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./assets/css/nprogress.css";
+import "./App.css";
+
+import CitySearch from "./components/city-search";
+import EventList from "./components/event-list";
+import NumberOfEvents from "./components/number-of-events";
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      events: [],
+      locations: [],
+    };
+  }
+
+  componentDidMount() {
+    this.mounted = true;
+    getEventsFromServer().then((events) => {
+      if (this.mounted) {
+        this.setState({ events, locations: extractLocations(events) });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
+  render() {
+    const { events, locations } = this.state;
+
+    return (
+      <div className="App">
+        <CitySearch
+          locations={locations}
+          onUpdateEvents={this.updateEventsHandler}
+        />
+        <NumberOfEvents />
+        <EventList events={events} />
+      </div>
+    );
+  }
+
+  updateEventsHandler = (location) => {
+    getEventsFromServer().then((events) => {
+      const locationEvents =
+        location === "all"
+          ? events
+          : events.filter((event) => event.location === location.trim());
+
+      this.setState({
+        events: locationEvents,
+      });
+    });
+  };
 }
 
 export default App;

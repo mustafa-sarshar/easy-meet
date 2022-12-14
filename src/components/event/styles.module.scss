@@ -1,0 +1,63 @@
+.event {
+  padding: 10px 10px 35px;
+  margin-bottom: 10px;
+  text-align: left;
+  border: 1px solid lightgreen;
+  border-radius: 12px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  position: relative;
+
+  &-summary {
+    text-align: center;
+    color: green;
+    text-shadow: 1px 1px 1px black, -1px -1px 1px black, 5px 5px 5px lightgreen;
+  }
+
+  &-start {
+    font-weight: bold;
+  }
+
+  &-location {
+    font-style: italic;
+  }
+
+  &-details {
+    border: 1px solid lightgreen;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 10px;
+
+    &__about {
+      color: white;
+      text-shadow: 1px 1px 1px black, -1px -1px 1px black, 5px 5px 5px gray;
+    }
+
+    &__description {
+      overflow-x: hidden;
+    }
+
+    &__htmlLink {
+      color: green;
+      float: right;
+    }
+  }
+
+  &-button {
+    &__details {
+      position: absolute;
+      right: 5px;
+      bottom: 5px;
+      padding: 5px 8px;
+      border-radius: 4px;
+      outline: none;
+      color: green;
+      cursor: pointer;
+    }
+  }
+}
+
+.clearfix {
+  content: "";
+  clear: both;
+  display: table;
+}
