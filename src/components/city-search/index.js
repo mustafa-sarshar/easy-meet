@@ -41,7 +41,7 @@ class CitySearch extends Component {
 
     return (
       <div className={styles["city-search"]}>
-        Search cities:
+        <label>Search cities:</label>
         <input
           type="text"
           className={styles["city-search__city"]}

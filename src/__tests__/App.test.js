@@ -7,7 +7,7 @@ import CitySearch from "../components/city-search";
 import NumberOfEvents from "../components/number-of-events";
 
 import fullStackWebDevCalendarEvents from "../assets/data/full-stack-web-dev-calendar-events";
-import { extractLocations, getEventsFull } from "../apis";
+import { extractLocations, getEventsFromServer } from "../apis";
 
 describe("<App /> component", () => {
   let AppWrapper;
@@ -45,14 +45,15 @@ describe("<App /> integration", () => {
     AppWrapper.unmount();
   });
 
-  test('App passes "locations" state as a prop to CitySearch', () => {
+  test("App passes 'locations' state as a prop to CitySearch", () => {
     const AppWrapper = mount(<App />);
-    const AppLocationsState = AppWrapper.state("locations");
 
+    const AppLocationsState = AppWrapper.state("locations");
     expect(AppLocationsState).not.toEqual(undefined);
     expect(AppWrapper.find(CitySearch).props().locations).toEqual(
       AppLocationsState
     );
+
     AppWrapper.unmount();
   });
 
@@ -70,7 +71,7 @@ describe("<App /> integration", () => {
 
     await CitySearchWrapper.instance().handleItemClicked(selectedCity);
 
-    const allEvents = await getEventsFull();
+    const allEvents = await getEventsFromServer();
     const eventsToShow = allEvents.filter(
       (event) => event.location === selectedCity
     );
@@ -80,15 +81,55 @@ describe("<App /> integration", () => {
   });
 
   test("get list of all events when user selects 'See all cities'", async () => {
-    const AppWrapper = mount(<App />);
+    const AppWrapper = await mount(<App />);
 
     const suggestionItemsEl = AppWrapper.find(CitySearch).find(
       ".city-search__suggestions li"
     );
     await suggestionItemsEl.at(suggestionItemsEl.length - 1).simulate("click");
 
-    const allEvents = await getEventsFull();
+    const allEvents = await getEventsFromServer();
     expect(AppWrapper.state("events")).toEqual(allEvents);
+
+    AppWrapper.unmount();
+  });
+
+  test("App passes the 'onNumOfEventsChange' to the NumberOfEvents component", async () => {
+    const AppWrapper = await mount(<App />);
+
+    const updateEventsHandler = AppWrapper.instance().updateEventsHandler;
+    const { onNumOfEventsChange } = AppWrapper.find(NumberOfEvents).props();
+
+    expect(onNumOfEventsChange).not.toEqual(undefined);
+    expect(updateEventsHandler).toEqual(onNumOfEventsChange);
+
+    AppWrapper.unmount();
+  });
+
+  test("The number of events in the App changes when the user changes it", async () => {
+    const AppWrapper = await mount(<App />);
+
+    const numEventsInputEl =
+      AppWrapper.find(NumberOfEvents).find(".event-numbers");
+    const nEventsUpdate = { target: { value: 5 } };
+    numEventsInputEl.simulate("change", nEventsUpdate);
+    expect(AppWrapper.state("nEvents")).toEqual(nEventsUpdate.target.value);
+
+    AppWrapper.unmount();
+  });
+
+  test("The number of events to be shown are equal to specified number of events by the user", async () => {
+    const AppWrapper = await mount(<App />);
+
+    const nEventsInputEl =
+      AppWrapper.find(NumberOfEvents).find(".event-numbers");
+    const nEventsUpdate = { target: { value: 2 } };
+
+    await nEventsInputEl.simulate("change", nEventsUpdate);
+
+    expect(AppWrapper.state("nEvents")).toEqual(2);
+    expect(AppWrapper.find(NumberOfEvents).state("nEvents")).toEqual(2);
+    expect(AppWrapper.find(EventList).props().events.length).toEqual(2);
 
     AppWrapper.unmount();
   });

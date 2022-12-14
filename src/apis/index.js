@@ -1,4 +1,3 @@
-import axios from "axios";
 import NProgress from "nprogress";
 
 import fullStackWebDevCalendarEvents from "../assets/data/full-stack-web-dev-calendar-events";
@@ -50,12 +49,15 @@ const getAccessToken = async () => {
     const searchParams = new URLSearchParams(window.location.search);
     const code = await searchParams.get("code");
     if (!code) {
-      const results = await axios.get(
+      const results = await fetch(
         "https://mrw543502h.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url"
-      );
-      const { authUrl } = results.data;
-
-      return (window.location.href = authUrl);
+      )
+        .then((res) => res.json())
+        .catch((error) => error.json());
+      if (results.authUrl) {
+        const { authUrl } = results;
+        return (window.location.href = authUrl);
+      }
     }
 
     return code && getToken(code);
@@ -79,20 +81,29 @@ const removeQuery = () => {
 };
 
 const getEventsFromServer = async () => {
+  NProgress.start();
+
+  if (window.location.href.startsWith("http://localhost")) {
+    NProgress.done();
+    return fullStackWebDevCalendarEvents;
+  }
+
   const token = await getAccessToken();
 
   if (token) {
     removeQuery();
     const url = `https://mrw543502h.execute-api.us-east-1.amazonaws.com/dev/api/get-events/${token}`;
-    const result = await axios.get(url);
-    if (result.data) {
-      const locations = extractLocations(result.data.events);
-      localStorage.setItem("lastEvents", JSON.stringify(result.data));
+    const results = await fetch(url)
+      .then((res) => res.json())
+      .catch((error) => error.json());
+    if (results.events) {
+      const locations = extractLocations(results.events);
+      localStorage.setItem("lastEvents", JSON.stringify(results));
       localStorage.setItem("locations", JSON.stringify(locations));
     }
     NProgress.done();
 
-    return result.data.events;
+    return results.events;
   }
 };
 
