@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import styles from "./styles.module.css";
+
 class CitySearch extends Component {
   constructor(props) {
     super(props);
@@ -7,6 +9,7 @@ class CitySearch extends Component {
     this.state = {
       query: "",
       suggestions: [],
+      showSuggestions: undefined,
     };
   }
 
@@ -23,22 +26,36 @@ class CitySearch extends Component {
   };
 
   handleItemClicked = (suggestion) => {
+    const { onUpdateEvents } = this.props;
+
     this.setState({
       query: suggestion,
+      showSuggestions: false,
     });
+
+    onUpdateEvents(suggestion);
   };
 
   render() {
+    const { query, suggestions, showSuggestions } = this.state;
+
     return (
-      <div className="city-search">
+      <div className={styles["city-search"]}>
+        Search cities:
         <input
           type="text"
-          className="city"
-          value={this.state.query}
+          className={styles["city-search__city"]}
+          value={query}
           onChange={this.handleInputChanged}
+          onFocus={() => {
+            this.setState({ showSuggestions: true });
+          }}
         />
-        <ul className="suggestions">
-          {this.state.suggestions.map((suggestion, idx) => (
+        <ul
+          className={styles["city-search__suggestions"]}
+          style={showSuggestions ? {} : { display: "none" }}
+        >
+          {suggestions.map((suggestion, idx) => (
             <li
               key={suggestion + idx}
               onClick={() => this.handleItemClicked(suggestion)}
@@ -46,7 +63,7 @@ class CitySearch extends Component {
               {suggestion}
             </li>
           ))}
-          <li key="all">
+          <li key="all" onClick={() => this.handleItemClicked("all")}>
             <b>See all cities</b>
           </li>
         </ul>

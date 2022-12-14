@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import styles from "./styles.module.css";
+
 class NumberOfEvents extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +20,7 @@ class NumberOfEvents extends Component {
       <label>
         Number of Events
         <input
-          className="event-number"
+          className={styles["event-numbers"]}
           type="number"
           value={nEvents}
           onChange={(event) => {

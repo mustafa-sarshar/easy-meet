@@ -56,33 +56,33 @@ describe("Event /> component", () => {
     const btnEventDetailsEl = EventWrapper.find(".event-button__details");
 
     expect(btnEventDetailsEl.text()).toBe("⌄ details");
-    expect(EventWrapper.find(".event-about")).toHaveLength(0);
-    expect(EventWrapper.find(".event-htmlLink")).toHaveLength(0);
-    expect(EventWrapper.find(".event-description")).toHaveLength(0);
+    expect(EventWrapper.find(".event-details__about")).toHaveLength(0);
+    expect(EventWrapper.find(".event-details__htmlLink")).toHaveLength(0);
+    expect(EventWrapper.find(".event-details__description")).toHaveLength(0);
 
     btnEventDetailsEl.simulate("click");
     expect(EventWrapper.state("collapsed")).toBe(false);
     expect(EventWrapper.find(".event-button__details").text()).toBe(
       "^ details"
     );
-    expect(EventWrapper.find(".event-about")).toHaveLength(1);
-    expect(EventWrapper.find(".event-htmlLink")).toHaveLength(1);
-    expect(EventWrapper.find(".event-description")).toHaveLength(1);
+    expect(EventWrapper.find(".event-details__about")).toHaveLength(1);
+    expect(EventWrapper.find(".event-details__htmlLink")).toHaveLength(1);
+    expect(EventWrapper.find(".event-details__description")).toHaveLength(1);
   });
 
   test("renders details collapsed, when hide details (^) is clicked", () => {
     EventWrapper.setState({ collapsed: false });
 
     const btnEventDetailsEl = EventWrapper.find(".event-button__details");
-    const txtEventAboutEl = EventWrapper.find(".event-about");
-    const lnkHtmlLinkEl = EventWrapper.find(".event-htmlLink");
-    const txtDescriptionEl = EventWrapper.find(".event-description");
+    const txtEventAboutEl = EventWrapper.find(".event-details__about");
+    const lnkHtmlLinkEl = EventWrapper.find(".event-details__htmlLink");
+    const txtDescriptionEl = EventWrapper.find(".event-details__description");
 
     expect(btnEventDetailsEl.text()).toBe("^ details");
     expect(txtEventAboutEl).toHaveLength(1);
     expect(txtEventAboutEl.text()).toBe("About event:");
     expect(lnkHtmlLinkEl).toHaveLength(1);
-    expect(lnkHtmlLinkEl.text()).toBe("See details on Google Calendar");
+    expect(lnkHtmlLinkEl.text()).toBe("See the details on Google Calendar");
     expect(lnkHtmlLinkEl.prop("href")).toBe(event.htmlLink);
     expect(txtDescriptionEl).toHaveLength(1);
     expect(txtDescriptionEl.text()).toBe(event.description);

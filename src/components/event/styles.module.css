@@ -1,0 +1,53 @@
+.event {
+  padding: 10px 10px 35px;
+  margin-bottom: 10px;
+  text-align: left;
+  border: 1px solid lightgreen;
+  border-radius: 12px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+.event-summary {
+  text-align: center;
+  color: green;
+  text-shadow: 1px 1px 1px black, -1px -1px 1px black, 5px 5px 5px lightgreen;
+}
+.event-start {
+  font-weight: bold;
+}
+.event-location {
+  font-style: italic;
+}
+.event-details {
+  border: 1px solid lightgreen;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+.event-details__about {
+  color: white;
+  text-shadow: 1px 1px 1px black, -1px -1px 1px black, 5px 5px 5px gray;
+}
+.event-details__description {
+  overflow-x: hidden;
+}
+.event-details__htmlLink {
+  color: green;
+  float: right;
+}
+.event-button__details {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  padding: 5px 8px;
+  border-radius: 4px;
+  outline: none;
+  color: green;
+  cursor: pointer;
+}
+
+.clearfix {
+  content: "";
+  clear: both;
+  display: table;
+}/*# sourceMappingURL=styles.module.css.map */
