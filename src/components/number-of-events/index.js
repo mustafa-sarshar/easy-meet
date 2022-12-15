@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import styles from "./styles.module.css";
+import "./styles.css";
 
 class NumberOfEvents extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class NumberOfEvents extends Component {
       <>
         <label>Number of Events</label>
         <input
-          className={styles["event-numbers"]}
+          className="event-numbers"
           type="number"
           value={nEvents}
           min={1}
