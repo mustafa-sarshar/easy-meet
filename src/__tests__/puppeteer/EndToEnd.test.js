@@ -2,24 +2,26 @@ import puppeteer from "puppeteer-core";
 
 // General Settings for puppeteer
 jest.setTimeout(30000);
-const browserAppPath = "/usr/bin/google-chrome-stable";
-const serverURL = "http://localhost:3000/";
-const slowMoDuration = 250; // ms
-const headlessFlag = true;
-const waitForTimeoutDuration = 1000; // ms
+const puppeteerConfigs = {
+  browserAppPath: "/usr/bin/google-chrome-stable",
+  serverURL: "http://localhost:3000/",
+  slowMoDuration: 250, // ms
+  headlessFlag: true,
+  waitForTimeoutDuration: 1000, // ms
+};
 
 describe("show/hide an event details", () => {
   let browser;
   let page;
   beforeAll(async () => {
     browser = await puppeteer.launch({
-      executablePath: browserAppPath,
-      headless: headlessFlag,
-      slowMo: slowMoDuration,
+      executablePath: puppeteerConfigs.browserAppPath,
+      headless: puppeteerConfigs.headlessFlag,
+      slowMo: puppeteerConfigs.slowMoDuration,
       ignoreDefaultArgs: ["--disable-extensions"], // ignores default setting that causes timeout errors
     });
     page = await browser.newPage();
-    await page.goto(serverURL);
+    await page.goto(puppeteerConfigs.serverURL);
     await page.waitForSelector(".event");
   });
 
@@ -38,7 +40,7 @@ describe("show/hide an event details", () => {
     const eventDetails = await page.$(".event .event-details");
 
     expect(eventDetails).toBeDefined();
-    await page.waitForTimeout(waitForTimeoutDuration);
+    await page.waitForTimeout(puppeteerConfigs.waitForTimeoutDuration);
   });
 
   test("User can collapse an event to hide its details", async () => {
@@ -46,7 +48,7 @@ describe("show/hide an event details", () => {
     const eventDetails = await page.$(".event .event-details");
 
     expect(eventDetails).toBeNull();
-    await page.waitForTimeout(waitForTimeoutDuration);
+    await page.waitForTimeout(puppeteerConfigs.waitForTimeoutDuration);
   });
 });
 
@@ -55,13 +57,13 @@ describe("Filter events by city", () => {
   let page;
   beforeAll(async () => {
     browser = await puppeteer.launch({
-      executablePath: browserAppPath,
-      headless: headlessFlag,
-      slowMo: slowMoDuration,
+      executablePath: puppeteerConfigs.browserAppPath,
+      headless: puppeteerConfigs.headlessFlag,
+      slowMo: puppeteerConfigs.slowMoDuration,
       ignoreDefaultArgs: ["--disable-extensions"], // ignores default setting that causes timeout errors
     });
     page = await browser.newPage();
-    await page.goto(serverURL);
+    await page.goto(puppeteerConfigs.serverURL);
     await page.waitForSelector(".city-search");
   });
 
@@ -90,7 +92,7 @@ describe("Filter events by city", () => {
   });
 
   test("All events that take place in 'Mumbai, Maharashtra, India' will be shown (limited to the specified number of events)", async () => {
-    await page.waitForTimeout(waitForTimeoutDuration);
+    await page.waitForTimeout(puppeteerConfigs.waitForTimeoutDuration);
   });
 });
 
@@ -100,13 +102,13 @@ describe("Specify number of events shown", () => {
   const nEventsToShow = 2;
   beforeAll(async () => {
     browser = await puppeteer.launch({
-      executablePath: browserAppPath,
-      headless: headlessFlag,
-      slowMo: slowMoDuration,
+      executablePath: puppeteerConfigs.browserAppPath,
+      headless: puppeteerConfigs.headlessFlag,
+      slowMo: puppeteerConfigs.slowMoDuration,
       ignoreDefaultArgs: ["--disable-extensions"], // ignores default setting that causes timeout errors
     });
     page = await browser.newPage();
-    await page.goto(serverURL);
+    await page.goto(puppeteerConfigs.serverURL);
     await page.waitForSelector(".event-numbers");
   });
 
@@ -137,6 +139,6 @@ describe("Specify number of events shown", () => {
     const suggestionsEl = await page.$$(".event");
     expect(suggestionsEl.length).toBe(nEventsToShow);
 
-    await page.waitForTimeout(waitForTimeoutDuration);
+    await page.waitForTimeout(puppeteerConfigs.waitForTimeoutDuration);
   });
 });

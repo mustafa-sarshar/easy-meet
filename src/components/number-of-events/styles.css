@@ -1,4 +1,10 @@
 .event-numbers {
+  width: 100px;
   margin: 20px 10px;
   text-align: center;
+}
+.event-error {
+  margin-top: 0;
+  color: red;
+  font-size: small;
 }/*# sourceMappingURL=styles.css.map */
