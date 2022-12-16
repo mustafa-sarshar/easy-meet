@@ -2,12 +2,14 @@ import React from "react";
 import { shallow, mount } from "enzyme";
 import { loadFeature, defineFeature } from "jest-cucumber";
 
-import App from "../App";
-import Event from "../components/event";
+import App from "../../App";
+import Event from "../../components/event";
 
-import fullStackWebDevCalendarEvents from "../assets/data/full-stack-web-dev-calendar-events";
+import fullStackWebDevCalendarEvents from "../../assets/data/full-stack-web-dev-calendar-events";
 
-const feature = loadFeature("./src/features/showHideAnEventsDetails.feature");
+const feature = loadFeature(
+  "./src/__tests__/jest-cucumber/features/showHideAnEventsDetails.feature"
+);
 
 defineFeature(feature, (test) => {
   test("An event element is collapsed by default.", ({ given, when, then }) => {

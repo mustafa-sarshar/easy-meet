@@ -2,13 +2,15 @@ import React from "react";
 import { shallow, mount } from "enzyme";
 import { loadFeature, defineFeature } from "jest-cucumber";
 
-import App from "../App";
-import CitySearch from "../components/city-search";
+import App from "../../App";
+import CitySearch from "../../components/city-search";
 
-import fullStackWebDevCalendarEvents from "../assets/data/full-stack-web-dev-calendar-events";
-import { extractLocations } from "../apis";
+import fullStackWebDevCalendarEvents from "../../assets/data/full-stack-web-dev-calendar-events";
+import { extractLocations } from "../../apis";
 
-const feature = loadFeature("./src/features/filterEventsByCity.feature");
+const feature = loadFeature(
+  "./src/__tests__/jest-cucumber/features/filterEventsByCity.feature"
+);
 
 defineFeature(feature, (test) => {
   test("When user hasn’t searched for a city, show upcoming events from all cities (limited by 'Number of events').", ({

@@ -1,13 +1,13 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 
-import App from "../App";
-import EventList from "../components/event-list";
-import CitySearch from "../components/city-search";
-import NumberOfEvents from "../components/number-of-events";
+import App from "../../App";
+import EventList from "../../components/event-list";
+import CitySearch from "../../components/city-search";
+import NumberOfEvents from "../../components/number-of-events";
 
-import fullStackWebDevCalendarEvents from "../assets/data/full-stack-web-dev-calendar-events";
-import { extractLocations, getEventsFromServer } from "../apis";
+import fullStackWebDevCalendarEvents from "../../assets/data/full-stack-web-dev-calendar-events";
+import { extractLocations, getEventsFromServer } from "../../apis";
 
 describe("<App /> component", () => {
   let AppWrapper;

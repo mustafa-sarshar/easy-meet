@@ -1,6 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+import * as atatus from "atatus-spa";
+atatus.config("bc28eadc23684e809d24f925da1fe523").install();
+
 import App from "./App";
 
 import "./index.css";
