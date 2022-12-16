@@ -1,0 +1,13 @@
+.event {
+  &-numbers {
+    width: 100px;
+    margin: 20px 10px;
+    text-align: center;
+  }
+
+  &-error {
+    margin-top: 0;
+    color: red;
+    font-size: small;
+  }
+}

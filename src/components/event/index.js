@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import styles from "./styles.module.css";
+import "./styles.css";
 
 class Event extends Component {
   constructor(props) {
@@ -22,32 +22,27 @@ class Event extends Component {
     const { collapsed } = this.state;
 
     return (
-      <div className={styles.event}>
-        <h1 className={styles["event-summary"]}>{event.summary}</h1>
-        <p className={styles["event-start"]}>
+      <div className="event">
+        <h1 className="event-summary">{event.summary}</h1>
+        <p className="event-start">
           {new Date(event.start.dateTime).toString()}
         </p>
-        <p className={styles["event-location"]}>{`@${event.location}`}</p>
+        <p className="event-location">{`@${event.location}`}</p>
 
         {!collapsed && (
-          <div className={styles["event-details"]}>
-            <h2 className={styles["event-details__about"]}>About event:</h2>
+          <div className="event-details">
+            <h2 className="event-details__about">About event:</h2>
 
-            <p className={styles["event-details__description"]}>
-              {event.description}
-            </p>
-            <a
-              className={styles["event-details__htmlLink"]}
-              href={event.htmlLink}
-            >
+            <p className="event-details__description">{event.description}</p>
+            <a className="event-details__htmlLink" href={event.htmlLink}>
               See the details on Google Calendar
             </a>
-            <div className={styles.clearfix}></div>
+            <div className="clearfix"></div>
           </div>
         )}
 
         <button
-          className={styles["event-button__details"]}
+          className="event-button__details"
           onClick={() => this.toggleDetails()}
         >
           {collapsed ? "⌄" : "^"} details

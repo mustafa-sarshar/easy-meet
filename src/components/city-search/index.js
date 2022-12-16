@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import styles from "./styles.module.css";
+import "./styles.css";
 
 class CitySearch extends Component {
   constructor(props) {
@@ -40,11 +40,11 @@ class CitySearch extends Component {
     const { query, suggestions, showSuggestions } = this.state;
 
     return (
-      <div className={styles["city-search"]}>
+      <div className="city-search">
         <label>Search cities:</label>
         <input
           type="text"
-          className={styles["city-search__city"]}
+          className="city-search__city"
           value={query}
           onChange={this.handleInputChanged}
           onFocus={() => {
@@ -52,7 +52,7 @@ class CitySearch extends Component {
           }}
         />
         <ul
-          className={styles["city-search__suggestions"]}
+          className="city-search__suggestions"
           style={showSuggestions ? {} : { display: "none" }}
         >
           {suggestions.map((suggestion, idx) => (

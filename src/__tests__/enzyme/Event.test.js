@@ -1,8 +1,8 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import fullStackWebDevCalendarEvents from "../assets/data/full-stack-web-dev-calendar-events";
-import Event from "../components/event";
+import fullStackWebDevCalendarEvents from "../../assets/data/full-stack-web-dev-calendar-events";
+import Event from "../../components/event";
 
 describe("Event /> component", () => {
   let EventWrapper;
