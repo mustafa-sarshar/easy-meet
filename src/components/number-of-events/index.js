@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ErrorAlert from "../alert/error-alert";
 
 import { Form } from "react-bootstrap";
 
@@ -31,23 +32,17 @@ class NumberOfEvents extends Component {
             this.changeNumOfEvents(Number(event.target.value));
           }}
         ></input>
-        {errorMessage && (
-          <>
-            <br />
-            <span className="event-error">{errorMessage}</span>
-          </>
-        )}
+        <ErrorAlert message={errorMessage} />
       </Form>
     );
   }
   changeNumOfEvents = async (value) => {
-    this.setState({ errorMessage: null });
     if (value > 0 && value < 33) {
-      this.setState({ nEvents: value });
+      this.setState({ nEvents: value, errorMessage: null });
       await this.props.onNumOfEventsChange(undefined, value);
     } else {
       this.setState({
-        errorMessage: "Number of events can be between 1 and 32",
+        errorMessage: "Select a number from 1 to 32",
       });
     }
   };
