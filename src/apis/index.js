@@ -22,7 +22,7 @@ const checkToken = async (accessToken) => {
     `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
   )
     .then((res) => res.json())
-    .catch((error) => error.json());
+    .catch((error) => error.message);
 
   return result;
 };
@@ -53,7 +53,7 @@ const getAccessToken = async () => {
         "https://mrw543502h.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url"
       )
         .then((res) => res.json())
-        .catch((error) => error.json());
+        .catch((error) => error.message);
       if (results.authUrl) {
         const { authUrl } = results;
         return (window.location.href = authUrl);
@@ -105,7 +105,7 @@ const getEventsFromServer = async () => {
     const url = `https://mrw543502h.execute-api.us-east-1.amazonaws.com/dev/api/get-events/${token}`;
     const results = await fetch(url)
       .then((res) => res.json())
-      .catch((error) => error.json());
+      .catch((error) => error.message);
     if (results.events) {
       const locations = extractLocations(results.events);
       localStorage.setItem("lastEvents", JSON.stringify(results));
