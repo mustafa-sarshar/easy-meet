@@ -6,9 +6,10 @@ const WelcomeScreen = (props) => {
   const { getAccessToken } = props;
   return props.showWelcomeScreen ? (
     <div className="welcome-screen">
-      <h1>Welcome to the Musto Easy-Meet app</h1>
+      <h1>Welcome to the Musto Easy-Meet</h1>
       <h4>
-        Log in to see upcoming events around the world for full-stack developers
+        Log in to see the upcoming events around the world for full-stack
+        developers
       </h4>
       <div align="center">
         <div class="google-btn">
@@ -25,7 +26,7 @@ const WelcomeScreen = (props) => {
               getAccessToken();
             }}
             rel="nofollow noopener"
-            class="btn-text"
+            class="google-btn__text"
           >
             <b>Sign in with google</b>
           </button>
