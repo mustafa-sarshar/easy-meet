@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import InfoAlert from "../alert/info-alert";
+
+import { Form } from "react-bootstrap";
 
 import "./styles.css";
 
@@ -10,19 +13,31 @@ class CitySearch extends Component {
       query: "",
       suggestions: [],
       showSuggestions: undefined,
+      alertMessage: "",
     };
   }
 
   handleInputChanged = (event) => {
     const { value } = event.target;
+    this.setState({ showSuggestions: true });
+
     const suggestions = this.props.locations.filter(
       (location) => location.toUpperCase().indexOf(value.toUpperCase()) > -1
     );
 
-    this.setState({
-      query: value,
-      suggestions,
-    });
+    if (suggestions.length === 0) {
+      this.setState({
+        query: value,
+        alertMessage:
+          "We can not find the city you are looking for. Please try another city",
+      });
+    } else {
+      return this.setState({
+        query: value,
+        suggestions,
+        alertMessage: "",
+      });
+    }
   };
 
   handleItemClicked = (suggestion) => {
@@ -30,17 +45,20 @@ class CitySearch extends Component {
 
     this.setState({
       query: suggestion,
+      suggestions: [],
       showSuggestions: false,
+      alertMessage: "",
     });
 
     onUpdateEvents(suggestion);
   };
 
   render() {
-    const { query, suggestions, showSuggestions } = this.state;
+    const { query, suggestions, showSuggestions, alertMessage } = this.state;
 
     return (
-      <div className="city-search">
+      <Form className="city-search">
+        <InfoAlert message={alertMessage} />
         <label>Search cities:</label>
         <input
           type="text"
@@ -67,7 +85,7 @@ class CitySearch extends Component {
             <b>See all cities</b>
           </li>
         </ul>
-      </div>
+      </Form>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 
 import App from "./App";
 
@@ -9,11 +9,11 @@ import reportWebVitals from "./reportWebVitals";
 import * as atatus from "atatus-spa";
 atatus.config("bc28eadc23684e809d24f925da1fe523").install();
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+ReactDOM.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
