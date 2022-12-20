@@ -83,9 +83,19 @@ const removeQuery = () => {
 const getEventsFromServer = async () => {
   NProgress.start();
 
-  if (window.location.href.startsWith("http://localhost")) {
+  const isLocal =
+    window.location.href.startsWith("http://127.0.0.1") ||
+    window.location.href.startsWith("http://localhost");
+
+  if (isLocal) {
     NProgress.done();
     return fullStackWebDevCalendarEvents;
+  }
+
+  if (!navigator.onLine) {
+    const data = localStorage.getItem("lastEvents");
+    NProgress.done();
+    return data ? JSON.parse(data).events : [];
   }
 
   const token = await getAccessToken();
