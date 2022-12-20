@@ -1,6 +1,10 @@
 import React, { Component } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import { extractLocations, getEventsFromServer } from "./apis";
+import {
+  extractLocations,
+  getEventsFromServer,
+  checkToken,
+  getAccessToken,
+} from "./apis";
 
 import "./assets/css/nprogress.css";
 import "./App.css";
@@ -8,6 +12,8 @@ import "./App.css";
 import CitySearch from "./components/city-search";
 import EventList from "./components/event-list";
 import NumberOfEvents from "./components/number-of-events";
+import WarningAlert from "./components/alert/warning-alert";
+import WelcomeScreen from "./components/welcome-screen";
 
 class App extends Component {
   constructor(props) {
@@ -17,17 +23,26 @@ class App extends Component {
       events: [],
       locations: [],
       nEvents: 32,
+      showWelcomeScreen: undefined,
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.mounted = true;
 
-    getEventsFromServer().then((events) => {
-      if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) });
-      }
-    });
+    const accessToken = localStorage.getItem("access_token");
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get("code");
+
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    if ((code || isTokenValid) && this.mounted) {
+      getEventsFromServer().then((events) => {
+        if (this.mounted) {
+          this.setState({ events, locations: extractLocations(events) });
+        }
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -35,23 +50,29 @@ class App extends Component {
   }
 
   render() {
-    const { events, locations, nEvents } = this.state;
+    const { events, locations, nEvents, showWelcomeScreen } = this.state;
+    const warningMessage = navigator.onLine
+      ? ""
+      : "App is running in Offline-Mode";
+
+    if (showWelcomeScreen === undefined) {
+      return <div className="App"></div>;
+    }
 
     return (
-      <Container>
-        <Row>
-          <Col>
-            <div className="App">
-              <CitySearch
-                locations={locations}
-                onUpdateEvents={this.updateEventsHandler}
-              />
-              <NumberOfEvents onNumOfEventsChange={this.updateEventsHandler} />
-              <EventList events={events.slice(0, nEvents)} />
-            </div>
-          </Col>
-        </Row>
-      </Container>
+      <div className="App">
+        <WarningAlert message={warningMessage} />
+        <CitySearch
+          locations={locations}
+          onUpdateEvents={this.updateEventsHandler}
+        />
+        <NumberOfEvents onNumOfEventsChange={this.updateEventsHandler} />
+        <EventList events={events.slice(0, nEvents)} />
+        <WelcomeScreen
+          showWelcomeScreen={showWelcomeScreen}
+          getAccessToken={getAccessToken}
+        />
+      </div>
     );
   }
 

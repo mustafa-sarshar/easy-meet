@@ -117,4 +117,11 @@ const getEventsFromServer = async () => {
   }
 };
 
-export { extractLocations, getEvents, getEventsFull, getEventsFromServer };
+export {
+  extractLocations,
+  getEvents,
+  getEventsFull,
+  getEventsFromServer,
+  checkToken,
+  getAccessToken,
+};
