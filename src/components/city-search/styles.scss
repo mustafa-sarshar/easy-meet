@@ -19,6 +19,8 @@
     margin: 10px;
     top: 5rem;
     font-size: 14px;
+    padding: 0;
+    list-style: none;
     box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
 
     & > li {
@@ -35,6 +37,19 @@
       &:hover {
         background-color: #bcdcdb;
       }
+    }
+  }
+  label {
+    color: darkgreen;
+    font-weight: bold;
+  }
+
+  input {
+    color: green;
+
+    &:focus,
+    &:hover {
+      color: black;
     }
   }
 }

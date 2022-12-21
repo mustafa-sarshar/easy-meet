@@ -7,14 +7,9 @@
   box-sizing: border-box;
 }
 
-ul {
-  padding: 0;
-  list-style: none;
-}
-
-p {
+/* p {
   margin: 5px 0;
-}
+} */
 
 .display-none {
   display: none;
@@ -36,6 +31,7 @@ input[type="number"] {
   height: 38px;
 }
 
+/* 
 .data-vis-wrapper {
   display: flex;
   align-items: center;
@@ -61,4 +57,4 @@ input[type="number"] {
     min-width: auto;
     margin: 0 auto;
   }
-}
+} */

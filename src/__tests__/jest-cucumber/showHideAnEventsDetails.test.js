@@ -19,10 +19,10 @@ defineFeature(feature, (test) => {
       AppWrapper = await mount(<App />);
     });
 
-    when("the events loads from the server", () => {
+    when("the events loads from the server", async () => {
       AppWrapper.update();
 
-      const { events } = AppWrapper.state();
+      const { events } = await AppWrapper.state();
       expect(events).toHaveLength(fullStackWebDevCalendarEvents.length);
     });
 

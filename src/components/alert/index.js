@@ -7,22 +7,22 @@ class Alert extends Component {
     super(props);
     this.color = null;
     this.fontSize = "14px";
+    this.backgroundColor = null;
   }
 
   getStyle = () => {
     return {
       color: this.color,
       fontSize: this.fontSize,
+      backgroundColor: this.backgroundColor,
     };
   };
 
   render() {
     const { message } = this.props;
     return (
-      <div>
-        <p className="alert-message" style={this.getStyle()}>
-          {message}
-        </p>
+      <div className="alert-message" style={this.getStyle()}>
+        {message}
       </div>
     );
   }

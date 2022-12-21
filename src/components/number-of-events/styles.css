@@ -7,4 +7,15 @@
   margin-top: 0;
   color: red;
   font-size: small;
+}
+
+form label {
+  color: darkgreen;
+  font-weight: bold;
+}
+form input {
+  color: green;
+}
+form input:focus, form input:hover {
+  color: black;
 }/*# sourceMappingURL=styles.css.map */

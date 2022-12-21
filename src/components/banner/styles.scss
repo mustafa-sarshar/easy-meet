@@ -1,0 +1,13 @@
+.banner {
+  &__app {
+    &-name {
+      color: darkgreen;
+      text-shadow: 1px 1px 1px black, -1px -1px 1px black, 5px 5px 5px green;
+      letter-spacing: 0.5ch;
+    }
+    &-description {
+      color: green;
+      text-shadow: 1px 1px 5px gray;
+    }
+  }
+}

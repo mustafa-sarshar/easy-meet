@@ -18,6 +18,8 @@
   margin: 10px;
   top: 5rem;
   font-size: 14px;
+  padding: 0;
+  list-style: none;
   box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
 }
 .city-search__suggestions > li {
@@ -33,4 +35,14 @@
 }
 .city-search__suggestions > li:hover {
   background-color: #bcdcdb;
+}
+.city-search label {
+  color: darkgreen;
+  font-weight: bold;
+}
+.city-search input {
+  color: green;
+}
+.city-search input:focus, .city-search input:hover {
+  color: black;
 }/*# sourceMappingURL=styles.css.map */

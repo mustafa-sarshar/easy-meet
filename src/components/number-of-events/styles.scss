@@ -11,3 +11,19 @@
     font-size: small;
   }
 }
+
+form {
+  label {
+    color: darkgreen;
+    font-weight: bold;
+  }
+
+  input {
+    color: green;
+
+    &:focus,
+    &:hover {
+      color: black;
+    }
+  }
+}

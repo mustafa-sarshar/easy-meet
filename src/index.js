@@ -4,7 +4,6 @@ import reportWebVitals from "./reportWebVitals";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 import App from "./App";
-import { Container } from "react-bootstrap";
 
 import "./index.css";
 
@@ -13,9 +12,7 @@ atatus.config("bc28eadc23684e809d24f925da1fe523").install();
 
 ReactDOM.render(
   <React.StrictMode>
-    <Container>
-      <App />
-    </Container>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );

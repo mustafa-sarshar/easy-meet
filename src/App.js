@@ -14,6 +14,7 @@ import EventList from "./components/event-list";
 import NumberOfEvents from "./components/number-of-events";
 import WarningAlert from "./components/alert/warning-alert";
 import WelcomeScreen from "./components/welcome-screen";
+import Banner from "./components/banner";
 
 class App extends Component {
   constructor(props) {
@@ -61,6 +62,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        <Banner />
         <WarningAlert message={warningMessage} />
         <CitySearch
           locations={locations}
