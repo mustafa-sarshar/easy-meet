@@ -15,6 +15,7 @@ import NumberOfEvents from "./components/number-of-events";
 import WarningAlert from "./components/alert/warning-alert";
 import WelcomeScreen from "./components/welcome-screen";
 import Banner from "./components/banner";
+import ChartStatistics from "./components/chart";
 
 class App extends Component {
   constructor(props) {
@@ -69,6 +70,7 @@ class App extends Component {
           onUpdateEvents={this.updateEventsHandler}
         />
         <NumberOfEvents onNumOfEventsChange={this.updateEventsHandler} />
+        <ChartStatistics onGetChartData={this.getChartData} />
         <EventList events={events.slice(0, nEvents)} />
         <WelcomeScreen
           showWelcomeScreen={showWelcomeScreen}
@@ -96,6 +98,19 @@ class App extends Component {
         nEvents: nEvents,
       });
     }
+  };
+
+  getChartData = () => {
+    console.log("getChartData");
+    const { locations, events } = this.state;
+    const data = locations.map((location) => {
+      const number = events.filter(
+        (event) => event.location === location
+      ).length;
+      const city = location.split(", ").shift();
+      return { city, number };
+    });
+    return data;
   };
 }
 
