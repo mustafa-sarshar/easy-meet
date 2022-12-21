@@ -11,7 +11,9 @@ import {
 } from "recharts";
 
 const ChartStatistics = (props) => {
-  const { getChartData } = props;
+  const { data } = props;
+  console.log(data);
+  if (data.length === 0) return <div></div>;
   return (
     <ScatterChart
       width={730}
@@ -29,7 +31,7 @@ const ChartStatistics = (props) => {
       {/* <ZAxis dataKey="number" range={[64, 144]} name="score" unit="km" /> */}
       <Tooltip cursor={{ strokeDasharray: "3 3" }} />
       <Legend verticalAlign="top" height={36} />
-      <Scatter name="Statistics" data={() => getChartData()} fill="#8884d8" />
+      <Scatter name="Statistics" data={data} fill="#8884d8" />
     </ScatterChart>
   );
 };

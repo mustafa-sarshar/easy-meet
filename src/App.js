@@ -25,26 +25,32 @@ class App extends Component {
       events: [],
       locations: [],
       nEvents: 32,
-      showWelcomeScreen: undefined,
+      // showWelcomeScreen: undefined,
+      showWelcomeScreen: false,
     };
   }
 
   async componentDidMount() {
     this.mounted = true;
 
-    const accessToken = localStorage.getItem("access_token");
-    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
-    const searchParams = new URLSearchParams(window.location.search);
-    const code = searchParams.get("code");
+    getEventsFromServer().then((events) => {
+      if (this.mounted) {
+        this.setState({ events, locations: extractLocations(events) });
+      }
+    });
+    // const accessToken = localStorage.getItem("access_token");
+    // const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    // const searchParams = new URLSearchParams(window.location.search);
+    // const code = searchParams.get("code");
 
-    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-    if ((code || isTokenValid) && this.mounted) {
-      getEventsFromServer().then((events) => {
-        if (this.mounted) {
-          this.setState({ events, locations: extractLocations(events) });
-        }
-      });
-    }
+    // this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    // if ((code || isTokenValid) && this.mounted) {
+    //   getEventsFromServer().then((events) => {
+    //     if (this.mounted) {
+    //       this.setState({ events, locations: extractLocations(events) });
+    //     }
+    //   });
+    // }
   }
 
   componentWillUnmount() {
@@ -70,7 +76,7 @@ class App extends Component {
           onUpdateEvents={this.updateEventsHandler}
         />
         <NumberOfEvents onNumOfEventsChange={this.updateEventsHandler} />
-        <ChartStatistics onGetChartData={this.getChartData} />
+        <ChartStatistics data={this.getChartData()} />
         <EventList events={events.slice(0, nEvents)} />
         <WelcomeScreen
           showWelcomeScreen={showWelcomeScreen}
@@ -103,14 +109,18 @@ class App extends Component {
   getChartData = () => {
     console.log("getChartData");
     const { locations, events } = this.state;
-    const data = locations.map((location) => {
-      const number = events.filter(
-        (event) => event.location === location
-      ).length;
-      const city = location.split(", ").shift();
-      return { city, number };
-    });
-    return data;
+    console.log(locations, events);
+    if (locations.length > 0) {
+      const data = locations.map((location) => {
+        const number = events.filter(
+          (event) => event.location === location
+        ).length;
+        const city = location.split(", ").shift();
+        return { city, number };
+      });
+      return data;
+    }
+    return [];
   };
 }
 
