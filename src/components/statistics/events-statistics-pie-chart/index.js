@@ -1,6 +1,5 @@
 import React from "react";
 import { Tab, Tabs, Accordion } from "react-bootstrap";
-import MyBarChart from "../../charts/bar-chart";
 
 import "./styles.css";
 import MyPieChart from "../../charts/pie-chart";
