@@ -8,6 +8,7 @@ class Alert extends Component {
     this.color = null;
     this.fontSize = "14px";
     this.backgroundColor = null;
+    this.margin = "0 auto";
   }
 
   getStyle = () => {
@@ -15,6 +16,7 @@ class Alert extends Component {
       color: this.color,
       fontSize: this.fontSize,
       backgroundColor: this.backgroundColor,
+      margin: this.margin,
     };
   };
 

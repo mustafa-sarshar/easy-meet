@@ -1,12 +1,16 @@
 .container {
   width: 80%;
   margin: auto;
-}
-.container > ul {
-  padding: 0;
-  list-style: none;
+  border: 1px solid;
 }
 
-.event-list li {
-  padding: 1px;
+.event-list__card {
+  width: 80%;
+  margin: 10px auto;
+}
+.event-list__title {
+  background: darkgreen;
+  color: white;
+  padding: 10px;
+  border-radius: 0.375rem;
 }/*# sourceMappingURL=styles.css.map */

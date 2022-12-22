@@ -1,48 +1,31 @@
 .city-search {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 300px;
   max-width: 300px;
-  margin: auto;
+  margin: 0 auto;
+  margin-top: 2rem;
   position: relative;
+  text-align: center;
 }
 .city-search__city {
   width: 250px;
   color: darkgreen;
+  margin: 0 auto;
 }
 .city-search__suggestions {
-  width: 250px;
   position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
   z-index: 2;
-  align-self: center;
-  margin: 10px;
-  top: 5rem;
   font-size: 14px;
-  padding: 0;
-  list-style: none;
   box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
+  margin: 0 auto;
 }
-.city-search__suggestions > li {
+.city-search__suggestions-items {
   color: darkgreen;
   text-align: left;
-  padding: 8px 6px 8px 10px;
   background-color: #eee;
   cursor: default;
 }
-.city-search__suggestions > li:last-child {
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-.city-search__suggestions > li:hover {
+.city-search__suggestions-items:hover {
   background-color: #bcdcdb;
-}
-.city-search label {
-  color: darkgreen;
-  font-weight: bold;
-}
-.city-search input {
-  color: green;
-}
-.city-search input:focus, .city-search input:hover {
-  color: black;
 }/*# sourceMappingURL=styles.css.map */

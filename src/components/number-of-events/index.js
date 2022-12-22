@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ErrorAlert from "../alert/error-alert";
 
-import { Form } from "react-bootstrap";
+import { Row, Col, Form } from "react-bootstrap";
 
 import "./styles.css";
 
@@ -19,20 +19,31 @@ class NumberOfEvents extends Component {
     const { nEvents, errorMessage } = this.state;
 
     return (
-      <Form>
-        <label>Number of Events</label>
-        <input
-          className="event-numbers"
-          type="number"
-          value={nEvents}
-          min={1}
-          max={32}
-          step={1}
-          onChange={(event) => {
-            this.changeNumOfEvents(Number(event.target.value));
-          }}
-        ></input>
-        <ErrorAlert message={errorMessage} />
+      <Form
+        className="event-form"
+        autoComplete="off"
+        onSubmit={(evt) => evt.preventDefault()}
+      >
+        <Form.Group controlId="formGroup-EventsNumber">
+          <Row>
+            <Col>
+              <Form.Label>Number of Events</Form.Label>
+              <Form.Control
+                className="event-numbers"
+                type="number"
+                value={nEvents}
+                min={1}
+                max={32}
+                step={1}
+                onChange={(event) => {
+                  event.preventDefault();
+                  this.changeNumOfEvents(Number(event.target.value));
+                }}
+              ></Form.Control>
+              <ErrorAlert message={errorMessage} />
+            </Col>
+          </Row>
+        </Form.Group>
       </Form>
     );
   }

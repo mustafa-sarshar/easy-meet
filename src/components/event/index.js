@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Card, Accordion } from "react-bootstrap";
 
 import "./styles.css";
 
@@ -19,35 +20,42 @@ class Event extends Component {
 
   render() {
     const { event } = this.props;
-    const { collapsed } = this.state;
 
     return (
-      <div className="event">
-        <h1 className="event-summary">{event.summary}</h1>
-        <p className="event-start">
-          {new Date(event.start.dateTime).toString()}
-        </p>
-        <p className="event-location">{`@${event.location}`}</p>
-
-        {!collapsed && (
-          <div className="event-details">
-            <h2 className="event-details__about">About event:</h2>
-
-            <p className="event-details__description">{event.description}</p>
-            <a className="event-details__htmlLink" href={event.htmlLink}>
-              See the details on Google Calendar
-            </a>
-            <div className="clearfix"></div>
-          </div>
-        )}
-
-        <button
-          className="event-button__details"
-          onClick={() => this.toggleDetails()}
-        >
-          {collapsed ? "⌄" : "^"} details
-        </button>
-      </div>
+      <Card className="event h-100 w-100">
+        <Card.Title>
+          <h1 className="event-summary">{event.summary}</h1>
+        </Card.Title>
+        <Card.Body>
+          <p className="event-start">
+            {new Date(event.start.dateTime).toString()}
+          </p>
+          <p className="event-location">{`@${event.location}`}</p>
+        </Card.Body>
+        <Card.Footer>
+          <Accordion>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header className="event-details">
+                About event
+              </Accordion.Header>
+              <Accordion.Body>
+                <p className="event-details__description">
+                  {event.description}
+                </p>
+                <a
+                  className="event-details__htmlLink"
+                  href={event.htmlLink}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  See the details on Google Calendar
+                </a>
+                <div className="clearfix"></div>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+        </Card.Footer>
+      </Card>
     );
   }
 }

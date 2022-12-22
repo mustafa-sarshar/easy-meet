@@ -3,58 +3,20 @@
   text-align: center;
 }
 
-.App * {
-  box-sizing: border-box;
+a:link {
+  color: darkgreen;
 }
 
-/* p {
-  margin: 5px 0;
-} */
-
-.display-none {
-  display: none;
+a:visited {
+  color: green;
 }
 
-.showSuggestions {
-  display: block;
+a:hover {
+  color: #000000;
+  text-decoration: none;
 }
 
-input[type="text"],
-input[type="number"] {
-  padding: 8px 6px 8px 10px;
-  border-radius: 4px;
-  outline: none;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  line-height: 20px;
-  align-self: center;
-  height: 38px;
+a:active {
+  color: #000000;
+  text-shadow: 1px 1px 5px #0a5508;
 }
-
-/* 
-.data-vis-wrapper {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.data-vis-wrapper .recharts-responsive-container {
-  min-width: 100%;
-  display: flex;
-}
-
-.recharts-surface {
-  overflow: visible;
-}
-
-@media only screen and (min-width: 992px) {
-  .data-vis-wrapper {
-    flex-direction: row;
-  }
-  .data-vis-wrapper .recharts-responsive-container {
-    flex-basis: 50%;
-    max-width: 50%;
-    min-width: auto;
-    margin: 0 auto;
-  }
-} */
