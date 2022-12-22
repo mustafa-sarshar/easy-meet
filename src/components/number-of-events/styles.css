@@ -1,21 +1,9 @@
+.event-form {
+  margin: 0 auto;
+  margin-top: 2rem;
+}
 .event-numbers {
   width: 100px;
-  margin: 20px 10px;
+  margin: 0 auto;
   text-align: center;
-}
-.event-error {
-  margin-top: 0;
-  color: red;
-  font-size: small;
-}
-
-form label {
-  color: darkgreen;
-  font-weight: bold;
-}
-form input {
-  color: green;
-}
-form input:focus, form input:hover {
-  color: black;
 }/*# sourceMappingURL=styles.css.map */

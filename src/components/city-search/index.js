@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import InfoAlert from "../alert/info-alert";
-
-import { Form } from "react-bootstrap";
+import { Form, ListGroup, Alert, Row, Col } from "react-bootstrap";
 
 import "./styles.css";
 
@@ -56,34 +55,53 @@ class CitySearch extends Component {
     const { query, suggestions, showSuggestions, alertMessage } = this.state;
 
     return (
-      <Form className="city-search">
-        <InfoAlert message={alertMessage} />
-        <label>Search cities</label>
-        <input
-          type="text"
-          className="city-search__city"
-          value={query}
-          onChange={this.handleInputChanged}
-          onFocus={() => {
-            this.setState({ showSuggestions: true });
-          }}
-        />
-        <ul
+      <Form className="city-search" autoComplete="off">
+        <Form.Group controlId="formGroup-SearchCity">
+          <Row>
+            <Col>
+              <Form.Label>Search cities</Form.Label>
+              <Form.Control
+                type="text"
+                className="city-search__city"
+                placeholder="enter the city name to search"
+                value={query}
+                onChange={this.handleInputChanged}
+                onFocus={() => {
+                  this.setState({ showSuggestions: true });
+                }}
+              />
+              <InfoAlert message={alertMessage} />
+            </Col>
+          </Row>
+        </Form.Group>
+        <ListGroup
+          defaultActiveKey="#all"
           className="city-search__suggestions"
           style={showSuggestions ? {} : { display: "none" }}
         >
           {suggestions.map((suggestion, idx) => (
-            <li
+            <ListGroup.Item
               key={suggestion + idx}
-              onClick={() => this.handleItemClicked(suggestion)}
+              className="city-search__suggestions-items"
+              onClick={(evt) => {
+                evt.preventDefault();
+                this.handleItemClicked(suggestion);
+              }}
             >
               {suggestion}
-            </li>
+            </ListGroup.Item>
           ))}
-          <li key="all" onClick={() => this.handleItemClicked("all")}>
-            <b>See all cities</b>
-          </li>
-        </ul>
+          <ListGroup.Item
+            key="all"
+            className="city-search__suggestions-items"
+            onClick={(evt) => {
+              evt.preventDefault();
+              this.handleItemClicked("all");
+            }}
+          >
+            All cities
+          </ListGroup.Item>
+        </ListGroup>
       </Form>
     );
   }

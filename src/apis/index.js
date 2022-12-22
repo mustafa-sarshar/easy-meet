@@ -9,6 +9,12 @@ const extractLocations = (events) => {
   return [...new Set(extractLocations)];
 };
 
+const extractEventsSummary = (events) => {
+  const extractSummary = events.map((event) => event.summary);
+
+  return [...new Set(extractSummary)];
+};
+
 const getEvents = async () => {
   return mockData;
 };
@@ -117,11 +123,24 @@ const getEventsFromServer = async () => {
   }
 };
 
+const randomColorPicker = () => {
+  // const colors = "0123456789abcdef";
+  const colors = "0123456789"; // dark color range
+  const colorCodeLength = 6;
+  let colorCode = "#";
+  for (let i = 0; i < colorCodeLength; i++) {
+    colorCode += colors[Math.floor(Math.random() * colors.length)];
+  }
+  return colorCode;
+};
+
 export {
   extractLocations,
+  extractEventsSummary,
   getEvents,
   getEventsFull,
   getEventsFromServer,
   checkToken,
   getAccessToken,
+  randomColorPicker,
 };

@@ -1,29 +1,11 @@
 .event {
+  &-form {
+    margin: 0 auto;
+    margin-top: 2rem;
+  }
   &-numbers {
     width: 100px;
-    margin: 20px 10px;
+    margin: 0 auto;
     text-align: center;
-  }
-
-  &-error {
-    margin-top: 0;
-    color: red;
-    font-size: small;
-  }
-}
-
-form {
-  label {
-    color: darkgreen;
-    font-weight: bold;
-  }
-
-  input {
-    color: green;
-
-    &:focus,
-    &:hover {
-      color: black;
-    }
   }
 }

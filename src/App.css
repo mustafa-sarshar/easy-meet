@@ -1,60 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 .App {
   text-align: center;
+  margin-top: 2rem;
 }
 
 .App * {
   box-sizing: border-box;
 }
-
-/* p {
-  margin: 5px 0;
-} */
-
-.display-none {
-  display: none;
-}
-
-.showSuggestions {
-  display: block;
-}
-
-input[type="text"],
-input[type="number"] {
-  padding: 8px 6px 8px 10px;
-  border-radius: 4px;
-  outline: none;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  line-height: 20px;
-  align-self: center;
-  height: 38px;
-}
-
-/* 
-.data-vis-wrapper {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.data-vis-wrapper .recharts-responsive-container {
-  min-width: 100%;
-  display: flex;
-}
-
-.recharts-surface {
-  overflow: visible;
-}
-
-@media only screen and (min-width: 992px) {
-  .data-vis-wrapper {
-    flex-direction: row;
-  }
-  .data-vis-wrapper .recharts-responsive-container {
-    flex-basis: 50%;
-    max-width: 50%;
-    min-width: auto;
-    margin: 0 auto;
-  }
-} */

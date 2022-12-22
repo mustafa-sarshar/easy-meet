@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {
   extractLocations,
+  extractEventsSummary,
   getEventsFromServer,
   checkToken,
   getAccessToken,
@@ -9,13 +10,16 @@ import {
 import "./assets/css/nprogress.css";
 import "./App.css";
 
-import CitySearch from "./components/city-search";
-import EventList from "./components/event-list";
-import NumberOfEvents from "./components/number-of-events";
-import WarningAlert from "./components/alert/warning-alert";
-import WelcomeScreen from "./components/welcome-screen";
 import Banner from "./components/banner";
-import ChartStatistics from "./components/chart";
+import WarningAlert from "./components/alert/warning-alert";
+import CitySearch from "./components/city-search";
+import NumberOfEvents from "./components/number-of-events";
+import EventList from "./components/event-list";
+import WelcomeScreen from "./components/welcome-screen";
+import EventsStatisticsBarChart from "./components/statistics/events-statistics-bar-chart";
+import EventsStatisticsPieChart from "./components/statistics/events-statistics-pie-chart";
+import SearchEditEvents from "./components/search-edit-events";
+import MyPieChart from "./components/charts/pie-chart";
 
 class App extends Component {
   constructor(props) {
@@ -33,6 +37,7 @@ class App extends Component {
   async componentDidMount() {
     this.mounted = true;
 
+    // For local testing
     getEventsFromServer().then((events) => {
       if (this.mounted) {
         this.setState({ events, locations: extractLocations(events) });
@@ -71,12 +76,18 @@ class App extends Component {
       <div className="App">
         <Banner />
         <WarningAlert message={warningMessage} />
-        <CitySearch
+        <EventsStatisticsPieChart
+          cityStatisticsData={this.getCityStatistics()}
+          eventsSummaryStatisticsData={this.getEventsSummaryStatistics()}
+        />
+        <EventsStatisticsBarChart
+          cityStatisticsData={this.getCityStatistics()}
+          eventsSummaryStatisticsData={this.getEventsSummaryStatistics()}
+        />
+        <SearchEditEvents
           locations={locations}
           onUpdateEvents={this.updateEventsHandler}
         />
-        <NumberOfEvents onNumOfEventsChange={this.updateEventsHandler} />
-        <ChartStatistics data={this.getChartData()} />
         <EventList events={events.slice(0, nEvents)} />
         <WelcomeScreen
           showWelcomeScreen={showWelcomeScreen}
@@ -106,21 +117,37 @@ class App extends Component {
     }
   };
 
-  getChartData = () => {
-    console.log("getChartData");
+  getCityStatistics = () => {
     const { locations, events } = this.state;
-    console.log(locations, events);
-    if (locations.length > 0) {
-      const data = locations.map((location) => {
-        const number = events.filter(
-          (event) => event.location === location
-        ).length;
-        const city = location.split(", ").shift();
+
+    const data = locations.map((location) => {
+      const number = events.filter(
+        (event) => event.location === location
+      ).length;
+
+      let city = location.split(", ").shift();
+      if (city.indexOf("-") > 0) {
+        city = city.split("- ").shift();
+      }
+      if (number > 0) {
         return { city, number };
-      });
-      return data;
-    }
-    return [];
+      } else {
+        return { city, number: undefined };
+      }
+    });
+
+    return data;
+  };
+
+  getEventsSummaryStatistics = () => {
+    const { events } = this.state;
+    const eventsSummary = extractEventsSummary(events);
+
+    const data = eventsSummary.map((summary) => {
+      const number = events.filter((event) => event.summary === summary).length;
+      return { summary, number };
+    });
+    return data;
   };
 }
 
