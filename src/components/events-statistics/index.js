@@ -19,7 +19,7 @@ const EventsStatistics = (props) => {
           <Tabs
             defaultActiveKey="cityStats"
             id="statistics"
-            className="mb-3"
+            className="mb-5"
             justify
           >
             <Tab eventKey="cityStats" title="Number of events per city">

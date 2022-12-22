@@ -32,8 +32,8 @@ class Event extends Component {
           </p>
           <p className="event-location">{`@${event.location}`}</p>
         </Card.Body>
-        <Card.Footer>
-          <Accordion>
+        <Card.Footer style={{ padding: "0" }}>
+          <Accordion flush>
             <Accordion.Item eventKey="0">
               <Accordion.Header className="event-details">
                 About event
