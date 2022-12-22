@@ -14,8 +14,7 @@ import Banner from "./components/banner";
 import WarningAlert from "./components/alert/warning-alert";
 import EventList from "./components/event-list";
 import WelcomeScreen from "./components/welcome-screen";
-import EventsStatisticsBarChart from "./components/statistics/events-statistics-bar-chart";
-import EventsStatisticsPieChart from "./components/statistics/events-statistics-pie-chart";
+import EventsStatistics from "./components/events-statistics";
 import SearchEditEvents from "./components/search-edit-events";
 
 class App extends Component {
@@ -26,7 +25,8 @@ class App extends Component {
       events: [],
       locations: [],
       nEvents: 32,
-      showWelcomeScreen: undefined,
+      // showWelcomeScreen: undefined,
+      showWelcomeScreen: false,
     };
   }
 
@@ -34,24 +34,24 @@ class App extends Component {
     this.mounted = true;
 
     // For local testing
-    // getEventsFromServer().then((events) => {
-    //   if (this.mounted) {
-    //     this.setState({ events, locations: extractLocations(events) });
-    //   }
-    // });
-    const accessToken = localStorage.getItem("access_token");
-    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
-    const searchParams = new URLSearchParams(window.location.search);
-    const code = searchParams.get("code");
+    getEventsFromServer().then((events) => {
+      if (this.mounted) {
+        this.setState({ events, locations: extractLocations(events) });
+      }
+    });
+    // const accessToken = localStorage.getItem("access_token");
+    // const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    // const searchParams = new URLSearchParams(window.location.search);
+    // const code = searchParams.get("code");
 
-    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-    if ((code || isTokenValid) && this.mounted) {
-      getEventsFromServer().then((events) => {
-        if (this.mounted) {
-          this.setState({ events, locations: extractLocations(events) });
-        }
-      });
-    }
+    // this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    // if ((code || isTokenValid) && this.mounted) {
+    //   getEventsFromServer().then((events) => {
+    //     if (this.mounted) {
+    //       this.setState({ events, locations: extractLocations(events) });
+    //     }
+    //   });
+    // }
   }
 
   componentWillUnmount() {
@@ -72,13 +72,9 @@ class App extends Component {
       <div className="App">
         <Banner />
         <WarningAlert message={warningMessage} />
-        <EventsStatisticsPieChart
+        <EventsStatistics
           cityStatisticsData={this.getCityStatistics()}
-          eventsSummaryStatisticsData={this.getEventsSummaryStatistics()}
-        />
-        <EventsStatisticsBarChart
-          cityStatisticsData={this.getCityStatistics()}
-          eventsSummaryStatisticsData={this.getEventsSummaryStatistics()}
+          eventsGenreStatisticsData={this.getEventsGenreStatistics()}
         />
         <SearchEditEvents
           locations={locations}
@@ -143,6 +139,24 @@ class App extends Component {
       const number = events.filter((event) => event.summary === summary).length;
       return { summary, number };
     });
+
+    return data;
+  };
+
+  getEventsGenreStatistics = () => {
+    const { events } = this.state;
+    const genres = ["JavaScript", "Node", "jQuery", "React", "Angular"];
+
+    const data = genres.map((genre) => {
+      const number = events.filter((event) =>
+        event.summary.trim().toLowerCase().includes(genre.toLowerCase())
+      ).length;
+
+      return { genre, number: (number / events.length) * 100 };
+    });
+
+    console.log(data);
+
     return data;
   };
 }

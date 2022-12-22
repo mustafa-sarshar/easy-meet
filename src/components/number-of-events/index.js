@@ -19,7 +19,11 @@ class NumberOfEvents extends Component {
     const { nEvents, errorMessage } = this.state;
 
     return (
-      <Form className="event-form">
+      <Form
+        className="event-form"
+        autoComplete="off"
+        onSubmit={(evt) => evt.preventDefault()}
+      >
         <Form.Group controlId="formGroup-EventsNumber">
           <Row>
             <Col>
@@ -32,6 +36,7 @@ class NumberOfEvents extends Component {
                 max={32}
                 step={1}
                 onChange={(event) => {
+                  event.preventDefault();
                   this.changeNumOfEvents(Number(event.target.value));
                 }}
               ></Form.Control>

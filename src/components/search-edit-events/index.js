@@ -1,5 +1,5 @@
 import React from "react";
-import { Tab, Tabs, Accordion, Row, Col } from "react-bootstrap";
+import { Accordion, Row, Col } from "react-bootstrap";
 
 import CitySearch from "../city-search";
 import NumberOfEvents from "../number-of-events";

@@ -1,17 +1,19 @@
 import React from "react";
 import { Tab, Tabs, Accordion } from "react-bootstrap";
 
-import "./styles.css";
-import MyPieChart from "../../charts/pie-chart";
+import BarRechart from "../charts/bar-rechart";
+import PieRechart from "../charts/pie-rechart";
 
-const EventsStatisticsPieChart = (props) => {
-  const { cityStatisticsData, eventsSummaryStatisticsData } = props;
+import "./styles.css";
+
+const EventsStatistics = (props) => {
+  const { cityStatisticsData, eventsGenreStatisticsData } = props;
 
   return (
     <Accordion className="accordion-container">
       <Accordion.Item eventKey="0">
         <Accordion.Header className="event-details">
-          Statistics (PieChart)
+          Statistics
         </Accordion.Header>
         <Accordion.Body>
           <Tabs
@@ -21,7 +23,7 @@ const EventsStatisticsPieChart = (props) => {
             justify
           >
             <Tab eventKey="cityStats" title="Number of events per city">
-              <MyPieChart
+              <BarRechart
                 data={cityStatisticsData}
                 plotData={{
                   xData: "city",
@@ -31,12 +33,12 @@ const EventsStatisticsPieChart = (props) => {
                 }}
               />
             </Tab>
-            <Tab eventKey="summaryStats" title="Number of events per title">
-              <MyPieChart
-                data={eventsSummaryStatisticsData}
+            <Tab eventKey="genreStats" title="Number of events per genre">
+              <PieRechart
+                data={eventsGenreStatisticsData}
                 plotData={{
-                  xData: "summary",
-                  xLabel: "Event Name",
+                  xData: "genre",
+                  xLabel: "Genre",
                   yData: "number",
                   yLabel: "Number of Events",
                 }}
@@ -49,4 +51,4 @@ const EventsStatisticsPieChart = (props) => {
   );
 };
 
-export default EventsStatisticsPieChart;
+export default EventsStatistics;

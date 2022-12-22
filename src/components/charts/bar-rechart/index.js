@@ -14,7 +14,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const MyBarChart = (props) => {
+const BarRechart = (props) => {
   const { data, plotData } = props;
 
   const colors = data.map((data, index) => {
@@ -60,4 +60,4 @@ const MyBarChart = (props) => {
   );
 };
 
-export default MyBarChart;
+export default BarRechart;

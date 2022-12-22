@@ -11,7 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const MyScatterPlot = (props) => {
+const ScatterRechart = (props) => {
   const { data, plotData } = props;
 
   return (
@@ -37,4 +37,4 @@ const MyScatterPlot = (props) => {
   );
 };
 
-export default MyScatterPlot;
+export default ScatterRechart;

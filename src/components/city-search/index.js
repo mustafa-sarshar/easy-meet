@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import InfoAlert from "../alert/info-alert";
-import { Form, ListGroup, Alert, Row, Col } from "react-bootstrap";
+import { Form, ListGroup, Row, Col } from "react-bootstrap";
 
 import "./styles.css";
 
@@ -12,11 +11,13 @@ class CitySearch extends Component {
       query: "",
       suggestions: [],
       showSuggestions: undefined,
-      alertMessage: "",
+      alertMessage: "Search cities",
     };
   }
 
   handleInputChanged = (event) => {
+    event.preventDefault();
+
     const { value } = event.target;
     this.setState({ showSuggestions: true });
 
@@ -33,7 +34,7 @@ class CitySearch extends Component {
       return this.setState({
         query: value,
         suggestions,
-        alertMessage: "",
+        alertMessage: "Search cities",
       });
     }
   };
@@ -45,7 +46,7 @@ class CitySearch extends Component {
       query: suggestion,
       suggestions: [],
       showSuggestions: false,
-      alertMessage: "",
+      alertMessage: "Search cities",
     });
 
     onUpdateEvents(suggestion);
@@ -53,13 +54,19 @@ class CitySearch extends Component {
 
   render() {
     const { query, suggestions, showSuggestions, alertMessage } = this.state;
+    const suggestionsStyle = showSuggestions ? {} : { display: "none" };
+    const alertStyle = alertMessage === "Search cities" ? {} : { color: "red" };
 
     return (
-      <Form className="city-search" autoComplete="off">
+      <Form
+        className="city-search"
+        autoComplete="off"
+        onSubmit={(evt) => evt.preventDefault()}
+      >
         <Form.Group controlId="formGroup-SearchCity">
           <Row>
             <Col>
-              <Form.Label>Search cities</Form.Label>
+              <Form.Label style={alertStyle}>{alertMessage}</Form.Label>
               <Form.Control
                 type="text"
                 className="city-search__city"
@@ -70,38 +77,39 @@ class CitySearch extends Component {
                   this.setState({ showSuggestions: true });
                 }}
               />
-              <InfoAlert message={alertMessage} />
+              <ListGroup
+                defaultActiveKey="#all"
+                className="city-search__suggestions"
+                style={suggestionsStyle}
+              >
+                {suggestions.map((suggestion, idx) => (
+                  <ListGroup.Item
+                    key={suggestion + idx}
+                    className="city-search__suggestions-items"
+                    style={alertStyle}
+                    onClick={(evt) => {
+                      evt.preventDefault();
+                      this.handleItemClicked(suggestion);
+                    }}
+                  >
+                    {suggestion}
+                  </ListGroup.Item>
+                ))}
+                <ListGroup.Item
+                  key="all"
+                  className="city-search__suggestions-items"
+                  style={alertStyle}
+                  onClick={(evt) => {
+                    evt.preventDefault();
+                    this.handleItemClicked("all");
+                  }}
+                >
+                  All cities
+                </ListGroup.Item>
+              </ListGroup>
             </Col>
           </Row>
         </Form.Group>
-        <ListGroup
-          defaultActiveKey="#all"
-          className="city-search__suggestions"
-          style={showSuggestions ? {} : { display: "none" }}
-        >
-          {suggestions.map((suggestion, idx) => (
-            <ListGroup.Item
-              key={suggestion + idx}
-              className="city-search__suggestions-items"
-              onClick={(evt) => {
-                evt.preventDefault();
-                this.handleItemClicked(suggestion);
-              }}
-            >
-              {suggestion}
-            </ListGroup.Item>
-          ))}
-          <ListGroup.Item
-            key="all"
-            className="city-search__suggestions-items"
-            onClick={(evt) => {
-              evt.preventDefault();
-              this.handleItemClicked("all");
-            }}
-          >
-            All cities
-          </ListGroup.Item>
-        </ListGroup>
       </Form>
     );
   }
