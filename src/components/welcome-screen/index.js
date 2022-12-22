@@ -4,14 +4,15 @@ import "./styles.css";
 
 const WelcomeScreen = (props) => {
   const { getAccessToken } = props;
+
   return props.showWelcomeScreen ? (
     <div className="welcome-screen">
-      <h1>Welcome to the Musto Easy-Meet</h1>
-      <h4>
-        Log in to see the upcoming events around the world for full-stack
-        developers
-      </h4>
-      <div align="center">
+      <div className="welcome-screen__title">
+        <h1>Welcome to the Musto Easy-Meet</h1>
+        <p>Find upcoming events around the world for full-stack developers</p>
+      </div>
+      <div className="welcome-screen__body" align="center">
+        <h4>To use the app, you may sign in with your google account</h4>
         <div className="google-btn">
           <div className="google-icon-wrapper">
             <img

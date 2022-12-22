@@ -26,6 +26,7 @@ class App extends Component {
       locations: [],
       nEvents: 32,
       showWelcomeScreen: undefined,
+      // showWelcomeScreen: false, // For local testing
     };
   }
 
@@ -90,11 +91,13 @@ class App extends Component {
 
   updateEventsHandler = async (location, nEvents) => {
     if (location) {
-      await getEventsFromServer().then((events) => {
+      await getEventsFromServer().then(async (events) => {
         const locationEvents =
           location === "all"
-            ? events
-            : events.filter((event) => event.location === location.trim());
+            ? await events
+            : await events.filter(
+                (event) => event.location === location.trim()
+              );
 
         this.setState({
           events: locationEvents,
@@ -123,7 +126,7 @@ class App extends Component {
       if (number > 0) {
         return { city, number };
       } else {
-        return { city, number: undefined };
+        return { city: undefined, number: undefined };
       }
     });
 
@@ -153,8 +156,6 @@ class App extends Component {
 
       return { genre, number: (number / events.length) * 100 };
     });
-
-    console.log(data);
 
     return data;
   };

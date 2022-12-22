@@ -1,9 +1,22 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 .App {
   text-align: center;
-  margin-top: 2rem;
 }
 
-.App * {
-  box-sizing: border-box;
+a:link {
+  color: darkgreen;
+}
+
+a:visited {
+  color: green;
+}
+
+a:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+a:active {
+  color: #000000;
+  text-shadow: 1px 1px 5px #0a5508;
 }
