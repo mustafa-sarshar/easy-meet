@@ -12,14 +12,11 @@ import "./App.css";
 
 import Banner from "./components/banner";
 import WarningAlert from "./components/alert/warning-alert";
-import CitySearch from "./components/city-search";
-import NumberOfEvents from "./components/number-of-events";
 import EventList from "./components/event-list";
 import WelcomeScreen from "./components/welcome-screen";
 import EventsStatisticsBarChart from "./components/statistics/events-statistics-bar-chart";
 import EventsStatisticsPieChart from "./components/statistics/events-statistics-pie-chart";
 import SearchEditEvents from "./components/search-edit-events";
-import MyPieChart from "./components/charts/pie-chart";
 
 class App extends Component {
   constructor(props) {
