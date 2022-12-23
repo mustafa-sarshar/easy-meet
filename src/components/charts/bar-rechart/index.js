@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { randomColorPicker } from "../../../apis";
 
 import "./styles.css";
