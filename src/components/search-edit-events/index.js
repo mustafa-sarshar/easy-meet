@@ -13,9 +13,7 @@ const SearchEditEvents = (props) => {
     <Accordion className="accordion-container">
       <Accordion.Item eventKey="0">
         <Accordion.Header>
-          <div className="text-green">
-            Search cities or edit the number of events
-          </div>
+          Search cities or edit the number of events
         </Accordion.Header>
         <Accordion.Body>
           <Row>

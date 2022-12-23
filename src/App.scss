@@ -1,0 +1,44 @@
+// Bootstrap Customization
+$app-color__main--normal: green;
+$app-color__main--dark: darkgreen;
+$app-color__main--light: lightgreen;
+
+$accordion-color: $app-color__main--normal;
+$accordion-button-active-bg: $app-color__main--dark;
+$accordion-icon-active-color: white;
+$accordion-button-active-color: white;
+
+$nav-link-color: black;
+$nav-link-hover-color: $app-color__main--dark;
+$nav-tabs-link-active-color: $app-color__main--normal;
+
+// Load the Bootstrap module
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// @import "../node_modules/bootstrap/scss/functions";
+// @import "../node_modules/bootstrap/scss/variables";
+// @import "../node_modules/bootstrap/scss/mixins";
+
+// Custom Styles
+@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+.App {
+  text-align: center;
+}
+
+a:link {
+  color: darkgreen;
+}
+
+a:visited {
+  color: green;
+}
+
+a:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+a:active {
+  color: #000000;
+  text-shadow: 1px 1px 5px #0a5508;
+}

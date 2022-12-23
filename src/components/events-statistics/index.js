@@ -12,9 +12,7 @@ const EventsStatistics = (props) => {
   return (
     <Accordion className="accordion-container">
       <Accordion.Item eventKey="0">
-        <Accordion.Header>
-          <div className="text-green">Statistics</div>
-        </Accordion.Header>
+        <Accordion.Header>Statistics</Accordion.Header>
         <Accordion.Body>
           <Tabs
             defaultActiveKey="cityStats"
