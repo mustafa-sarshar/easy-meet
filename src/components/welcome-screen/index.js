@@ -34,7 +34,8 @@ const WelcomeScreen = (props) => {
       </div>
       <a
         href="https://mustafa-sarshar.github.io/easy-meet/privacy.html"
-        rel="nofollow noopener"
+        target="_blank"
+        rel="nofollow noreferrer"
       >
         Privacy policy
       </a>

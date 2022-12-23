@@ -133,17 +133,17 @@ class App extends Component {
     return data;
   };
 
-  getEventsSummaryStatistics = () => {
-    const { events } = this.state;
-    const eventsSummary = extractEventsSummary(events);
+  // getEventsSummaryStatistics = () => {
+  //   const { events } = this.state;
+  //   const eventsSummary = extractEventsSummary(events);
 
-    const data = eventsSummary.map((summary) => {
-      const number = events.filter((event) => event.summary === summary).length;
-      return { summary, number };
-    });
+  //   const data = eventsSummary.map((summary) => {
+  //     const number = events.filter((event) => event.summary === summary).length;
+  //     return { summary, number };
+  //   });
 
-    return data;
-  };
+  //   return data;
+  // };
 
   getEventsGenreStatistics = () => {
     const { events } = this.state;

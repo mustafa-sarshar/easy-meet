@@ -22,7 +22,9 @@ const EventsStatistics = (props) => {
           >
             <Tab eventKey="cityStats" title="Number of events per city">
               <BarRechart
-                data={cityStatisticsData}
+                data={cityStatisticsData.filter(
+                  (data) => data.number !== undefined
+                )}
                 plotData={{
                   xData: "city",
                   xLabel: "City",
@@ -33,7 +35,9 @@ const EventsStatistics = (props) => {
             </Tab>
             <Tab eventKey="genreStats" title="Number of events per genre">
               <PieRechart
-                data={eventsGenreStatisticsData}
+                data={eventsGenreStatisticsData.filter(
+                  (data) => data.number !== 0
+                )}
                 plotData={{
                   xData: "genre",
                   xLabel: "Genre",

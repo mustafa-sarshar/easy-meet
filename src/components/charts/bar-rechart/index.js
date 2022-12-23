@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { randomColorPicker } from "../../../apis";
 
 import "./styles.css";
@@ -22,7 +22,7 @@ const BarRechart = (props) => {
   });
 
   return (
-    <ResponsiveContainer height={300}>
+    <ResponsiveContainer height={350}>
       <BarChart
         data={data}
         margin={{
