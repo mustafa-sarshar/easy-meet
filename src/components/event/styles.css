@@ -25,4 +25,8 @@
   content: "";
   clear: both;
   display: table;
+}
+
+.accordion {
+  width: 100%;
 }/*# sourceMappingURL=styles.css.map */
