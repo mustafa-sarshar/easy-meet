@@ -5,20 +5,6 @@ import "./styles.css";
 const genres = ["JavaScript", "Node", "jQuery", "React", "Angular"];
 
 class Event extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      collapsed: true,
-    };
-  }
-
-  toggleDetails = () => {
-    this.setState((prevState) => ({
-      collapsed: !prevState.collapsed,
-    }));
-  };
-
   render() {
     const { event } = this.props;
     const genre = genres.filter((genre) =>
@@ -44,11 +30,11 @@ class Event extends Component {
           <div
             className="accordion accordion-flush"
             id={`accordionEvent_${event.id}`}
-            style={{ width: "100%" }}
+            style={{ width: "100%", border: "none" }}
           >
             <div className="accordion-item">
               <h2
-                className="accordion-header event-details"
+                className="accordion-header"
                 id={`headingOneEvent_${event.id}`}
               >
                 <button

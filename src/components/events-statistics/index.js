@@ -1,5 +1,4 @@
 import React from "react";
-import { Tab, Tabs } from "react-bootstrap";
 
 import BarRechart from "../charts/bar-rechart";
 import PieRechart from "../charts/pie-rechart";

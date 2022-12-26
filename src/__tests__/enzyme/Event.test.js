@@ -17,7 +17,9 @@ describe("Event /> component", () => {
   });
 
   test("renders event details collapsed by default", () => {
-    expect(EventWrapper.state("collapsed")).toBe(true);
+    expect(
+      EventWrapper.find(".accordion-button").hasClass("collapsed")
+    ).toEqual(true);
   });
 
   test("renders the summary of event", () => {
@@ -43,51 +45,34 @@ describe("Event /> component", () => {
     expect(txtEventLocationEl.text()).toBe(`@${event.location}`);
   });
 
-  test("renders button show details (⌄), when details are collapsed", () => {
+  test("renders button 'About event', when details are collapsed", () => {
     EventWrapper.setState({ collapsed: true });
-    const btnEventDetailsEl = EventWrapper.find(".event-button__details");
+    const btnEventDetailsEl = EventWrapper.find(".accordion-button");
 
     expect(btnEventDetailsEl).toHaveLength(1);
-    expect(btnEventDetailsEl.text()).toBe("⌄ details");
+    expect(btnEventDetailsEl.text()).toBe("About event");
   });
 
-  test("renders details expanded, when show details (⌄) is clicked", () => {
-    EventWrapper.setState({ collapsed: true });
-    const btnEventDetailsEl = EventWrapper.find(".event-button__details");
+  test("renders details expanded, when 'About event' is clicked", async () => {
+    EventWrapper.update();
 
-    expect(btnEventDetailsEl.text()).toBe("⌄ details");
-    expect(EventWrapper.find(".event-details__about")).toHaveLength(0);
-    expect(EventWrapper.find(".event-details__htmlLink")).toHaveLength(0);
-    expect(EventWrapper.find(".event-details__description")).toHaveLength(0);
+    const btnEventDetailsEl = EventWrapper.find(".accordion-button");
+    const accordionCollapseEl = EventWrapper.find(".accordion-collapse");
+    expect(accordionCollapseEl.hasClass("show")).toBe(false);
 
-    btnEventDetailsEl.simulate("click");
-    expect(EventWrapper.state("collapsed")).toBe(false);
-    expect(EventWrapper.find(".event-button__details").text()).toBe(
-      "^ details"
-    );
-    expect(EventWrapper.find(".event-details__about")).toHaveLength(1);
+    await btnEventDetailsEl.simulate("click");
+
     expect(EventWrapper.find(".event-details__htmlLink")).toHaveLength(1);
     expect(EventWrapper.find(".event-details__description")).toHaveLength(1);
   });
 
-  test("renders details collapsed, when hide details (^) is clicked", () => {
-    EventWrapper.setState({ collapsed: false });
+  test("renders details collapsed, when 'About event' is clicked again", async () => {
+    EventWrapper.update();
 
-    const btnEventDetailsEl = EventWrapper.find(".event-button__details");
-    const txtEventAboutEl = EventWrapper.find(".event-details__about");
-    const lnkHtmlLinkEl = EventWrapper.find(".event-details__htmlLink");
-    const txtDescriptionEl = EventWrapper.find(".event-details__description");
+    const btnEventDetailsEl = EventWrapper.find(".accordion-button");
+    expect(btnEventDetailsEl.hasClass("collapsed")).toEqual(true);
 
-    expect(btnEventDetailsEl.text()).toBe("^ details");
-    expect(txtEventAboutEl).toHaveLength(1);
-    expect(txtEventAboutEl.text()).toBe("About event:");
-    expect(lnkHtmlLinkEl).toHaveLength(1);
-    expect(lnkHtmlLinkEl.text()).toBe("See the details on Google Calendar");
-    expect(lnkHtmlLinkEl.prop("href")).toBe(event.htmlLink);
-    expect(txtDescriptionEl).toHaveLength(1);
-    expect(txtDescriptionEl.text()).toBe(event.description);
-
-    btnEventDetailsEl.simulate("click");
-    expect(EventWrapper.state("collapsed")).toBe(true);
+    await btnEventDetailsEl.simulate("click");
+    EventWrapper.update();
   });
 });

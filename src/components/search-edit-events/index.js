@@ -30,14 +30,14 @@ const SearchEditEvents = (props) => {
           data-bs-parent="#accordionSearchEditEvents"
         >
           <div className="accordion-body">
-            <div className="row">
-              <div className="col">
+            <div className="row mx-auto">
+              <div className="col-md-6 col-sm-12">
                 <CitySearch
                   locations={locations}
                   onUpdateEvents={onUpdateEvents}
                 />
               </div>
-              <div className="col">
+              <div className="col-md-6 col-sm-12">
                 <NumberOfEvents onNumOfEventsChange={onUpdateEvents} />
               </div>
             </div>

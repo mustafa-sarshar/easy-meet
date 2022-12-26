@@ -24,10 +24,14 @@ describe("<NumberOfEvents /> component", () => {
   });
 
   test("the method 'changeNumOfEvents' updates the state 'nEvents' when the given value is in the valid range (1-32)", () => {
-    NumberOfEventsWrapper.instance().changeNumOfEvents(1000);
+    NumberOfEventsWrapper.find(".event-numbers").simulate("change", {
+      target: { value: 1000 },
+    });
     expect(NumberOfEventsWrapper.state("nEvents")).toBe(32);
 
-    NumberOfEventsWrapper.instance().changeNumOfEvents(10);
+    NumberOfEventsWrapper.find(".event-numbers").simulate("change", {
+      target: { value: 10 },
+    });
     expect(NumberOfEventsWrapper.state("nEvents")).toBe(10);
   });
 

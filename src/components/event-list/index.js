@@ -14,7 +14,7 @@ class EventList extends Component {
           <div className="row justify-content-md-center mt-1">
             {events.map((event) => (
               <div
-                className="col col-xl-4 col-md-6 col-sm-12 mb-3"
+                className="col-xl-4 col-md-6 col-sm-12 mb-3"
                 key={"eventLi_" + event.id}
               >
                 <Event event={event} />
