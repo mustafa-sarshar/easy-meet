@@ -19,10 +19,4 @@
 .event-details__htmlLink {
   color: green;
   float: right;
-}
-
-.clearfix {
-  content: "";
-  clear: both;
-  display: table;
 }/*# sourceMappingURL=styles.css.map */

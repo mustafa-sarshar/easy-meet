@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Row, Col, Card } from "react-bootstrap";
 import Event from "../event";
 
 import "./styles.css";
@@ -9,24 +8,21 @@ class EventList extends Component {
     const { events } = this.props;
 
     return (
-      <Card className="event-list__card">
-        <Card.Body>
-          <Card.Title className="event-list__title">All Events</Card.Title>
-          <Row className="main-view justify-content-md-center mt-1">
+      <div className="card event-list__card">
+        <div className="card-body">
+          <div className="card-title event-list__title">All Events</div>
+          <div className="row justify-content-md-center mt-1">
             {events.map((event) => (
-              <Col
+              <div
+                className="col-xl-4 col-md-6 col-sm-12 mb-3"
                 key={"eventLi_" + event.id}
-                className="mb-3"
-                xl={4}
-                md={6}
-                sm={12}
               >
                 <Event event={event} />
-              </Col>
+              </div>
             ))}
-          </Row>
-        </Card.Body>
-      </Card>
+          </div>
+        </div>
+      </div>
     );
   }
 }

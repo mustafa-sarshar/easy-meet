@@ -26,7 +26,7 @@
 - TDD/BDD methodology
 - Google Calendar API
 
-## User Stories
+## USER STORIES
 
 - As a user, I should be able to filter events by city so that I can see the list of events that take place in that city.
 - As a user, I should be able to show/hide event details so that I can see more/less information about an event.

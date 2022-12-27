@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import ErrorAlert from "../alert/error-alert";
 
-import { Row, Col, Form } from "react-bootstrap";
-
 import "./styles.css";
 
 class NumberOfEvents extends Component {
@@ -19,38 +17,42 @@ class NumberOfEvents extends Component {
     const { nEvents, errorMessage } = this.state;
 
     return (
-      <Form
+      <form
         className="event-form"
         autoComplete="off"
         onSubmit={(evt) => evt.preventDefault()}
       >
-        <Form.Group controlId="formGroup-EventsNumber">
-          <Row>
-            <Col>
-              <Form.Label>Number of Events</Form.Label>
-              <Form.Control
-                className="event-numbers"
+        <div className="input-group mb-3">
+          <div className="row mx-auto">
+            <div className="col">
+              <label htmlFor="event-numbers-enter" className="form-label">
+                Number of Events
+              </label>
+              <input
+                className="form-control event-numbers"
+                id="event-numbers-enter"
+                aria-describedby="nEventsInput"
                 type="number"
                 value={nEvents}
                 min={1}
                 max={32}
                 step={1}
-                onChange={(event) => {
-                  event.preventDefault();
-                  this.changeNumOfEvents(Number(event.target.value));
-                }}
-              ></Form.Control>
-              <ErrorAlert message={errorMessage} />
-            </Col>
-          </Row>
-        </Form.Group>
-      </Form>
+                onChange={this.changeNumOfEvents}
+              />
+              <div id="nEventsInput" className="form-text">
+                <ErrorAlert message={errorMessage} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
     );
   }
-  changeNumOfEvents = async (value) => {
+  changeNumOfEvents = (event) => {
+    const value = Number(event.target.value);
     if (value > 0 && value < 33) {
       this.setState({ nEvents: value, errorMessage: null });
-      await this.props.onNumOfEventsChange(undefined, value);
+      this.props.onNumOfEventsChange(undefined, value);
     } else {
       this.setState({
         errorMessage: "Select a number from 1 to 32",

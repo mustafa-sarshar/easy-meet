@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Form, ListGroup, Row, Col } from "react-bootstrap";
 
 import "./styles.css";
 
@@ -16,8 +15,6 @@ class CitySearch extends Component {
   }
 
   handleInputChanged = (event) => {
-    event.preventDefault();
-
     const { value } = event.target;
     this.setState({ showSuggestions: true });
 
@@ -58,18 +55,22 @@ class CitySearch extends Component {
     const alertStyle = alertMessage === "Search cities" ? {} : { color: "red" };
 
     return (
-      <Form
+      <form
         className="city-search"
         autoComplete="off"
         onSubmit={(evt) => evt.preventDefault()}
       >
-        <Form.Group controlId="formGroup-SearchCity">
-          <Row>
-            <Col>
-              <Form.Label style={alertStyle}>{alertMessage}</Form.Label>
-              <Form.Control
+        <div className="input-group mb-3">
+          <div className="row mx-auto">
+            <div className="col">
+              <label htmlFor="event-numbers-enter" className="form-label">
+                Number of Events
+              </label>
+              <input
                 type="text"
-                className="city-search__city"
+                id="city-search-enter"
+                aria-describedby="city-search-input"
+                className="form-control city-search__city"
                 placeholder="enter the city name to search"
                 value={query}
                 onChange={this.handleInputChanged}
@@ -77,40 +78,37 @@ class CitySearch extends Component {
                   this.setState({ showSuggestions: true });
                 }}
               />
-              <ListGroup
-                defaultActiveKey="#all"
-                className="city-search__suggestions"
+              <ul
+                className="list-group list-group city-search__suggestions"
                 style={suggestionsStyle}
               >
                 {suggestions.map((suggestion, idx) => (
-                  <ListGroup.Item
+                  <li
                     key={suggestion + idx}
-                    className="city-search__suggestions-items"
+                    className="list-group-item city-search__suggestions-items"
                     style={alertStyle}
-                    onClick={(evt) => {
-                      evt.preventDefault();
+                    onClick={() => {
                       this.handleItemClicked(suggestion);
                     }}
                   >
                     {suggestion}
-                  </ListGroup.Item>
+                  </li>
                 ))}
-                <ListGroup.Item
+                <li
                   key="all"
-                  className="city-search__suggestions-items"
+                  className="list-group-item city-search__suggestions-items"
                   style={alertStyle}
-                  onClick={(evt) => {
-                    evt.preventDefault();
+                  onClick={() => {
                     this.handleItemClicked("all");
                   }}
                 >
                   All cities
-                </ListGroup.Item>
-              </ListGroup>
-            </Col>
-          </Row>
-        </Form.Group>
-      </Form>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </form>
     );
   }
 }

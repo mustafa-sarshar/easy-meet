@@ -32,7 +32,6 @@ describe("<CitySearch /> component", () => {
     });
 
     const eventObject = { target: { value: "Berlin" } };
-
     CitySearchWrapper.find(".city-search__city").simulate(
       "change",
       eventObject

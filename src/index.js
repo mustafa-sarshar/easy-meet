@@ -7,8 +7,8 @@ import App from "./App";
 
 import "./index.css";
 
-import * as atatus from "atatus-spa";
-atatus.config("bc28eadc23684e809d24f925da1fe523").install();
+// import * as atatus from "atatus-spa";
+// atatus.config("bc28eadc23684e809d24f925da1fe523").install();
 
 ReactDOM.render(
   <React.StrictMode>
@@ -29,4 +29,4 @@ serviceWorkerRegistration.register();
 reportWebVitals();
 
 // Test integration: to verify that the integration is working
-atatus.notify(new Error("Test Atatus Setup"));
+// atatus.notify(new Error("Test Atatus Setup"));

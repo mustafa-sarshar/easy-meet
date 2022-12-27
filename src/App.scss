@@ -7,10 +7,18 @@ $accordion-color: $app-color__main--normal;
 $accordion-button-active-bg: $app-color__main--dark;
 $accordion-icon-active-color: white;
 $accordion-button-active-color: white;
+$accordion-button-focus-border-color: $app-color__main--dark;
+$accordion-button-focus-box-shadow: 0 0 0 0.25rem
+  rgba($app-color__main--light, 0.25);
 
 $nav-link-color: black;
 $nav-link-hover-color: $app-color__main--dark;
 $nav-tabs-link-active-color: $app-color__main--normal;
+
+$list-group-active-border-color: $app-color__main--normal;
+
+$input-focus-border-color: rgba($app-color__main--light, 0.5);
+$input-focus-box-shadow: 0 0 0 0.25rem rgba($app-color__main--light, 0.25);
 
 // Load the Bootstrap module
 @import "../node_modules/bootstrap/scss/bootstrap";
