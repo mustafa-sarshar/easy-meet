@@ -14,7 +14,7 @@
 
 <table width="100%"  style="overflow:auto">
   <tr>
-    <th width="25%" style="text-align:center;">Landing Page</th>
+    <th width="25%" style="text-align:center;">List of Events</th>
     <th width="25%" style="text-align:center;">Statistics</th>
     <th width="25%" style="text-align:center;">Statistics</th>
     <th width="25%" style="text-align:center;">Search Event</th>
