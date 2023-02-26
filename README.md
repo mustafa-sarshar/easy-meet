@@ -1,14 +1,31 @@
 # easy-meet
 
+- A web-app for tech guys and developers worldwide.
+
 ## PROJECT DESCRIPTION
 
-- [Musto Easy-Meet](https://mustafa-sarshar.github.io/easy-meet/), is a web-app for finding events, helping _web-developers_ to meet each other and get connected easier.
+- This is a web-app for finding events, helping _web-developers_ to meet each other and get connected easier.
 - This web-app is also **Progressive Web App (PWA)** and can be installed locally on any device as well as run in offline-mode, when the internet is not accessible.
 - The data is fetched via **Google Calendar API** from a Google Calendar (Calendar ID: _fullstackwebdev@careerfoundry.com_).
 
-## LIVE DEMO
+## VISIT THE WEBSITE [😎🔗](https://mustafa-sarshar.github.io/easy-meet/)
 
-- Deployed App: https://mustafa-sarshar.github.io/easy-meet/
+### SCREENSHOTS
+
+<table width="100%"  style="overflow:auto">
+  <tr>
+    <th width="25%" style="text-align:center;">Landing Page</th>
+    <th width="25%" style="text-align:center;">Statistics</th>
+    <th width="25%" style="text-align:center;">Statistics</th>
+    <th width="25%" style="text-align:center;">Search Event</th>
+  </tr>
+  <tr>
+    <td width="25%"><img src="https://github.com/mustafa-sarshar/musto-easy-meet/blob/main/docs/assets/img/musto-easy-meet-1.png?raw=true"/></td>
+    <td width="25%"><img src="https://github.com/mustafa-sarshar/musto-easy-meet/blob/main/docs/assets/img/musto-easy-meet-2.png?raw=true"/></td>
+    <td width="25%"><img src="https://github.com/mustafa-sarshar/musto-easy-meet/blob/main/docs/assets/img/musto-easy-meet-3.png?raw=true"/></td>
+    <td width="25%"><img src="https://github.com/mustafa-sarshar/musto-easy-meet/blob/main/docs/assets/img/musto-easy-meet-4.png?raw=true"/></td>
+  </tr>
+</table>
 
 ## KEY FEATURES
 
