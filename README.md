@@ -14,18 +14,18 @@
 
 <table width="100%"  style="overflow:auto">
   <tr>
-    <th width="25%" style="text-align:center;">Landing Page</th>
-    <th width="25%" style="text-align:center;">List of Events</th>
-    <th width="25%" style="text-align:center;">Statistics</th>
-    <th width="25%" style="text-align:center;">Statistics</th>
-    <th width="25%" style="text-align:center;">Search Event</th>
+    <th width="20%" style="text-align:center;">Landing Page</th>
+    <th width="20%" style="text-align:center;">List of Events</th>
+    <th width="20%" style="text-align:center;">Statistics</th>
+    <th width="20%" style="text-align:center;">Statistics</th>
+    <th width="20%" style="text-align:center;">Search Event</th>
   </tr>
   <tr>
-    <td width="25%"><img src="https://github.com/mustafa-sarshar/easy-meet/blob/main/docs/assets/img/musto-easy-meet-1.png?raw=true"/></td>
-    <td width="25%"><img src="https://github.com/mustafa-sarshar/easy-meet/blob/main/docs/assets/img/musto-easy-meet-2.png?raw=true"/></td>
-    <td width="25%"><img src="https://github.com/mustafa-sarshar/easy-meet/blob/main/docs/assets/img/musto-easy-meet-3.png?raw=true"/></td>
-    <td width="25%"><img src="https://github.com/mustafa-sarshar/easy-meet/blob/main/docs/assets/img/musto-easy-meet-4.png?raw=true"/></td>
-    <td width="25%"><img src="https://github.com/mustafa-sarshar/easy-meet/blob/main/docs/assets/img/musto-easy-meet-5.png?raw=true"/></td>
+    <td width="20%"><img src="https://github.com/mustafa-sarshar/easy-meet/blob/main/docs/assets/img/musto-easy-meet-1.png?raw=true"/></td>
+    <td width="20%"><img src="https://github.com/mustafa-sarshar/easy-meet/blob/main/docs/assets/img/musto-easy-meet-2.png?raw=true"/></td>
+    <td width="20%"><img src="https://github.com/mustafa-sarshar/easy-meet/blob/main/docs/assets/img/musto-easy-meet-3.png?raw=true"/></td>
+    <td width="20%"><img src="https://github.com/mustafa-sarshar/easy-meet/blob/main/docs/assets/img/musto-easy-meet-4.png?raw=true"/></td>
+    <td width="20%"><img src="https://github.com/mustafa-sarshar/easy-meet/blob/main/docs/assets/img/musto-easy-meet-5.png?raw=true"/></td>
   </tr>
 </table>
 
